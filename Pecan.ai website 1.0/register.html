@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - pecan.ai</title>
+    <link rel="stylesheet" href="register-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html"><h1>pecan.ai</h1></a>
+            </div>
+            <div class="nav-menu">
+                <a href="signup.html" class="nav-link">Sign In</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="signup-main">
+        <div class="signup-container">
+            <!-- Header Section -->
+            <section class="signup-header">
+                <h1>Join <span class="orange">pecan</span></h1>
+            </section>
+
+            <!-- Sign Up Form -->
+            <section class="signup-form-section">
+                <div class="form-container">
+                    <form class="signup-form" id="signupForm">
+                        <!-- Account Type Selection -->
+                        <div class="form-group account-type-group">
+                            <label class="form-label">I am signing up as a:</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="accountType" value="student" checked>
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-text">Student</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="accountType" value="university">
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-text">University</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Personal Information -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password *</label>
+                            <input type="password" id="password" name="password" class="form-input" required>
+                            <div class="password-requirements">
+                                <small>Password must be at least 8 characters long</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword" class="form-label">Confirm Password *</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" required>
+                        </div>
+
+                        <!-- University-specific fields -->
+                        <div class="university-fields" style="display: none;">
+                            <div class="form-group">
+                                <label for="university" class="form-label">University/Institution *</label>
+                                <input type="text" id="university" name="university" class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="position" class="form-label">Your Position *</label>
+                                <select id="position" name="position" class="form-select">
+                                    <option value="">Select your role</option>
+                                    <option value="admissions-director">Admissions Director</option>
+                                    <option value="admissions-officer">Admissions Officer</option>
+                                    <option value="dean">Dean</option>
+                                    <option value="registrar">Registrar</option>
+                                    <option value="it-director">IT Director</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Student-specific fields -->
+                        <div class="student-fields">
+                            <!-- No additional fields for students -->
+                        </div>
+
+                        <!-- Terms and Privacy -->
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a></span>
+                            </label>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">I'd like to receive updates and news about pecan.ai</span>
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Create Account</span>
+                            <span class="btn-loading" style="display: none;">Creating Account...</span>
+                        </button>
+
+                        <!-- Sign In Link -->
+                        <div class="signin-link">
+                            <p>Already have an account? <a href="signup.html" class="link">Sign In</a></p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome to pecan! 🎉</h2>
+            </div>
+            <div class="modal-body">
+                <p>Your account has been created successfully! We've sent a verification email to your address.</p>
+                <p>Please check your email and click the verification link to activate your account.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="closeModal()">Get Started</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="register-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - pecan.ai</title>
+    <link rel="stylesheet" href="signup-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html"><h1>pecan.ai</h1></a>
+            </div>
+            <div class="nav-menu">
+                <a href="signup.html" class="nav-link">Sign In</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="signup-main">
+        <div class="signup-container">
+            <!-- Header Section -->
+            <section class="signup-header">
+                <h1>Welcome <span class="orange">back</span></h1>
+            </section>
+
+            <!-- Sign In Form -->
+            <section class="signup-form-section">
+                <div class="form-container">
+                    <form class="signup-form" id="signinForm">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password *</label>
+                            <input type="password" id="password" name="password" class="form-input" required>
+                        </div>
+
+                        <!-- Remember Me and Forgot Password -->
+                        <div class="form-options">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="rememberMe" name="rememberMe">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Remember me</span>
+                            </label>
+                            <a href="#" class="link forgot-password">Forgot password?</a>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Sign In</span>
+                            <span class="btn-loading" style="display: none;">Signing In...</span>
+                        </button>
+
+                        <!-- Sign Up Link -->
+                        <div class="signin-link">
+                            <p>Don't have an account? <a href="register.html" class="link">Create Account</a></p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome back! 🎉</h2>
+            </div>
+            <div class="modal-body">
+                <p>You have successfully signed in to your pecan account.</p>
+                <p>Redirecting you to your dashboard...</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="closeModal()">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="signup-script.js"></script>
+</body>
+</html>

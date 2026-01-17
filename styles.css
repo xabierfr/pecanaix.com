@@ -595,14 +595,14 @@ body {
 
 .feature-text p {
     font-size: 1.3rem;
-    color: #e0e0e0;
+    color: #ffffff;
     line-height: 1.5;
     max-width: 800px;
 }
 
 .feature-text .small-text {
     font-size: 1.1rem;
-    color: #cccccc;
+    color: #ffffff;
     line-height: 1.6;
     margin-top: 10px;
 }

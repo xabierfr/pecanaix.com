@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pecan.ai - AI-Powered Academic Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>pecan.ai</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="about-us.html" class="nav-link">About Us</a>
+                <a href="signup.html" class="nav-link">Sign In</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Toggle Section -->
+    <section class="toggle-section">
+        <div class="nav-toggle">
+            <span class="toggle-label" id="studentLabel">Student</span>
+            <div class="toggle-switch" id="userToggle">
+                <div class="toggle-slider"></div>
+            </div>
+            <span class="toggle-label" id="universityLabel">University</span>
+        </div>
+    </section>
+
+    <!-- UNIVERSITY CONTENT -->
+    <div id="universityContent" class="content-section">
+        <!-- Hero Section -->
+        <section class="hero-simple">
+            <div class="hero-text-only fade-in-on-scroll">
+                <h2>
+                    <span class="hero-main-line"><span class="orange-text">Talk to </span><span class="orange-text">pecan</span></span>
+                    <span class="hero-secondary-line"><span class="orange-text">and feel confident<br>that you<br></span>
+                    <span class="white-text">admit the best</span></span>
+                </h2>
+            </div>
+            <button class="demo-button" onclick="window.location.href='demo.html'">Book a demo</button>
+            
+            <!-- Wave Animation -->
+            <div class="wave-container">
+                <div class="wave-line wave1"></div>
+                <div class="wave-line wave2"></div>
+                <div class="wave-line wave3"></div>
+                <div class="wave-line wave4"></div>
+            </div>
+        </section>
+
+        <!-- Description Section -->
+        <section class="description-section">
+            <p class="main-description">
+                <span class="orange">Pecan</span> <span class="orange">is a voice-powered AI agent to help you make more</span> <span class="orange">informed admission decisions</span>
+            </p>
+            <div class="arrow-down"></div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-list">
+            <div class="feature-item align-right">
+                <div class="feature-animation">
+                    <canvas class="code-animation" data-animation="1"></canvas>
+                </div>
+                <div class="feature-text">
+                    <h3>Consolidate all your evaluation criteria <span class="orange">in one place</span></h3>
+                    <p class="small-text">Feed pecan relevant documentation about your admissions criteria. It will create personalized dashboards so you can see how the different metrics interact.</p>
+                </div>
+            </div>
+
+            <div class="feature-item reverse">
+                <div class="feature-animation">
+                    <canvas class="code-animation" data-animation="2"></canvas>
+                </div>
+                <div class="feature-text">
+                    <h3>Visualize how <span class="orange">all</span> applicants fare against what you are looking for</h3>
+                    <p class="small-text">Can't remember how applicant 1 fared against applicant 100? Pecan will let you compare all prospective students and show outliers.</p>
+                </div>
+            </div>
+
+            <div class="feature-item align-right">
+                <div class="feature-animation">
+                    <canvas class="code-animation" data-animation="3"></canvas>
+                </div>
+                <div class="feature-text">
+                    <h3>Get to know your candidates better through <span class="orange">more data</span> and <span class="orange">AI-safe assessments</span></h3>
+                    <p class="small-text">Pecan will create assessments tailored to your criteria that bypass LLM cheating in admissions. Just specify the traits you want to test.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- STUDENT CONTENT -->
+    <div id="studentContent" class="content-section" style="display: none;">
+        <!-- Hero Section -->
+        <section class="hero-simple">
+            <div class="hero-text-only fade-in-on-scroll">
+                <h2>
+                    <span class="hero-main-line"><span class="orange-text">Talk to </span><span class="orange-text">pecan</span></span>
+                    <span class="hero-secondary-line"><span class="orange-text">and<br></span>
+                    <span class="white-text">own your<br>academic future</span></span>
+                </h2>
+            </div>
+            <button class="demo-button" onclick="window.location.href='demo.html'">Book a demo</button>
+            
+            <!-- Wave Animation -->
+            <div class="wave-container">
+                <div class="wave-line wave1"></div>
+                <div class="wave-line wave2"></div>
+                <div class="wave-line wave3"></div>
+                <div class="wave-line wave4"></div>
+            </div>
+        </section>
+
+        <!-- Description Section -->
+        <section class="description-section">
+            <p class="main-description">
+                <span class="orange">Pecan</span> <span class="orange">is a voice-powered AI agent to help you get into the</span> <span class="orange">school of your dreams</span>
+            </p>
+            <div class="arrow-down"></div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-list">
+            <div class="feature-item align-right">
+                <div class="feature-animation">
+                    <canvas class="code-animation" data-animation="4"></canvas>
+                </div>
+                <div class="feature-text">
+                    <h3>Find the <span class="orange">university</span> and <span class="orange">program</span> that best fit <span class="orange">your interests</span> and <span class="orange">talents</span></h3>
+                    <p class="small-text">Pecan is just like a trusted counselor. Based on what you say you like, it will feed you places and study programs that make sense.</p>
+                </div>
+            </div>
+
+            <div class="feature-item reverse">
+                <div class="feature-animation">
+                    <canvas class="code-animation" data-animation="5"></canvas>
+                </div>
+                <div class="feature-text">
+                    <h3>Understand what the universities are <span class="orange">looking for</span></h3>
+                    <p class="small-text">Pecan will scan the web to understand what your target schools want to see in candidates. It will then give you advice on how to present yourself that way.</p>
+                </div>
+            </div>
+
+            <div class="feature-item align-right">
+                <div class="feature-animation">
+                    <canvas class="code-animation" data-animation="6"></canvas>
+                </div>
+                <div class="feature-text">
+                    <h3><span class="orange">Come across better</span> to admissions teams</h3>
+                    <p class="small-text">Talk to pecan and it will ask you questions to get to know you better. Its goal is to pass information to the universities about the things that make you stand out.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>pecan.ai</h3>
+                    <p>AI-powered admissions platform connecting students with their dream universities.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Say hello</h4>
+                    <p>xabier.fernandez-ruiz25@imperial.ac.uk</p>
+                </div>
+                <div class="footer-column">
+                    <p>Terms of Service</p>
+                    <p>Privacy Policy</p>
+                    <p>Cookie Policy</p>
+                    <p>Security</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 <a href="about.html" class="footer-link">Pecan.ai</a>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

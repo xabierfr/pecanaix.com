@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About pecan.ai - Interactive Chat</title>
+    <link rel="stylesheet" href="about-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html"><h1>pecan.ai</h1></a>
+            </div>
+            <div class="nav-menu">
+                <a href="demo.html" class="nav-link">Book Demo</a>
+                <a href="signup.html" class="nav-link">Sign In</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="chat-main">
+        <div class="chat-container">
+            <!-- Header -->
+            <section class="chat-header">
+                <h1>Chat with <span class="orange">pecan</span></h1>
+            </section>
+
+            <!-- Chat Interface -->
+            <section class="chat-interface">
+                <div class="chat-window" id="chatWindow">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Welcome message -->
+                        <div class="message bot-message">
+                            <div class="message-content">
+                                <div class="message-bubble">
+                                    <p>Hi! I'm pecan, your AI admissions assistant. I'm here to help you understand how our platform can transform your admissions process.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="chat-input-area">
+                    <div class="input-container">
+                        <input type="text" id="messageInput" placeholder="Type your message here..." class="message-input">
+                        <button id="voiceButton" class="voice-button" title="Click to speak">
+                        </button>
+                    </div>
+                    <div class="voice-status" id="voiceStatus" style="display: none;">
+                        <div class="listening-indicator">
+                            <div class="pulse"></div>
+                            <span>Listening...</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Voice Permission Modal -->
+    <div class="modal" id="voiceModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Enable Voice Chat</h3>
+            </div>
+            <div class="modal-body">
+                <p>To use voice chat, please allow microphone access when prompted by your browser.</p>
+                <p>This will let you speak directly to pecan for a more natural conversation experience.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn secondary" onclick="closeVoiceModal()">Maybe Later</button>
+                <button class="modal-btn" onclick="enableVoice()">Enable Voice</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="about-script.js"></script>
+</body>
+</html>

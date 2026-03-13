@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pecan.ai - AI-Powered Academic Platform</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <h1>pecan.ai</h1>
+                <a href="index.html">
+                    <div class="logo-wrapper">
+                        <img src="Pecan Logo PNG.png" alt="pecan" class="logo-img">
+                        <span class="logo-text">pecan</span>
+                    </div>
+                </a>
             </div>
             <div class="nav-menu">
                 <a href="about-us.html" class="nav-link">About Us</a>
@@ -21,26 +26,14 @@
         </div>
     </nav>
 
-    <!-- Toggle Section -->
-    <section class="toggle-section">
-        <div class="nav-toggle">
-            <span class="toggle-label" id="studentLabel">Student</span>
-            <div class="toggle-switch" id="userToggle">
-                <div class="toggle-slider"></div>
-            </div>
-            <span class="toggle-label" id="universityLabel">University</span>
-        </div>
-    </section>
-
     <!-- UNIVERSITY CONTENT -->
     <div id="universityContent" class="content-section">
         <!-- Hero Section -->
         <section class="hero-simple">
             <div class="hero-text-only fade-in-on-scroll">
                 <h2>
-                    <span class="hero-main-line"><span class="orange-text">Talk to </span><span class="orange-text">pecan</span></span>
-                    <span class="hero-secondary-line"><span class="white-text">and feel confident<br>that you<br></span>
-                    <span class="white-text">admit the best</span></span>
+                    <span class="hero-medium-line"><span class="white-text">Build the community</span></span>
+                    <span class="hero-secondary-line"><span class="white-text">your alumni never stopped wanting</span></span>
                 </h2>
             </div>
             <button class="demo-button" onclick="window.location.href='demo.html'">Book a demo</button>
@@ -56,21 +49,20 @@
 
         <!-- Description Section -->
         <section class="description-section">
-            <p class="main-description">
-                <span class="orange">Pecan</span> <span class="orange">is a voice-powered AI agent to help you make more</span> <span class="orange">informed admission decisions</span>
+            <p class="main-description magnetic-text" id="magnetic-description">
+                Pecan is an AI community tool built on top of your tech stack to automate hyper-personalized alumni engagement. It links with your current databases, provides event-alumni recommendations, and automatically reaches out
             </p>
-            <div class="arrow-down"></div>
         </section>
 
         <!-- Features Section -->
         <section class="features-list">
             <div class="feature-item align-right">
                 <div class="feature-animation">
-                    <canvas class="code-animation" data-animation="1"></canvas>
+                    <canvas class="code-animation" data-animation="3"></canvas>
                 </div>
                 <div class="feature-text">
-                    <h3>Consolidate all your evaluation criteria <span class="orange">in one place</span></h3>
-                    <p class="small-text">Feed pecan relevant documentation about your admissions criteria. It will create personalized dashboards so you can see how the different metrics interact.</p>
+                    <h3>Streamline primary data gathering</h3>
+                    <p class="small-text">Pecan directly connects to your CRM and databases. It also establishes direct communication channels for informal stakeholders - student societies, professors, and adjacent teams.</p>
                 </div>
             </div>
 
@@ -79,82 +71,18 @@
                     <canvas class="code-animation" data-animation="2"></canvas>
                 </div>
                 <div class="feature-text">
-                    <h3>Visualize how <span class="orange">all</span> applicants fare against what you are looking for</h3>
-                    <p class="small-text">Can't remember how applicant 1 fared against applicant 100? Pecan will let you compare all prospective students and show outliers.</p>
+                    <h3>Create events tailored to what your alumni want</h3>
+                    <p class="small-text">Instead of working backwards from events to alumni, Pecan provides actionable recommendations based on your current alumni segments, learning on the go.</p>
                 </div>
             </div>
 
             <div class="feature-item align-right">
                 <div class="feature-animation">
-                    <canvas class="code-animation" data-animation="3"></canvas>
+                    <canvas class="code-animation" data-animation="1"></canvas>
                 </div>
                 <div class="feature-text">
-                    <h3>Get to know your candidates better through <span class="orange">more data</span> and <span class="orange">AI-safe assessments</span></h3>
-                    <p class="small-text">Pecan will create assessments tailored to your criteria that bypass LLM cheating in admissions. Just specify the traits you want to test.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- STUDENT CONTENT -->
-    <div id="studentContent" class="content-section" style="display: none;">
-        <!-- Hero Section -->
-        <section class="hero-simple">
-            <div class="hero-text-only fade-in-on-scroll">
-                <h2>
-                    <span class="hero-main-line"><span class="orange-text">Talk to </span><span class="orange-text">pecan</span></span>
-                    <span class="hero-secondary-line"><span class="white-text">and<br></span>
-                    <span class="white-text">own your<br>academic future</span></span>
-                </h2>
-            </div>
-            <button class="demo-button" onclick="window.location.href='demo.html'">Book a demo</button>
-            
-            <!-- Wave Animation -->
-            <div class="wave-container">
-                <div class="wave-line wave1"></div>
-                <div class="wave-line wave2"></div>
-                <div class="wave-line wave3"></div>
-                <div class="wave-line wave4"></div>
-            </div>
-        </section>
-
-        <!-- Description Section -->
-        <section class="description-section">
-            <p class="main-description">
-                <span class="orange">Pecan</span> <span class="orange">is a voice-powered AI agent to help you get into the</span> <span class="orange">school of your dreams</span>
-            </p>
-            <div class="arrow-down"></div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features-list">
-            <div class="feature-item align-right">
-                <div class="feature-animation">
-                    <canvas class="code-animation" data-animation="4"></canvas>
-                </div>
-                <div class="feature-text">
-                    <h3>Find the <span class="orange">university</span> and <span class="orange">program</span> that best fit <span class="orange">your interests</span> and <span class="orange">talents</span></h3>
-                    <p class="small-text">Pecan is just like a trusted counselor. Based on what you say you like, it will feed you places and study programs that make sense.</p>
-                </div>
-            </div>
-
-            <div class="feature-item reverse">
-                <div class="feature-animation">
-                    <canvas class="code-animation" data-animation="5"></canvas>
-                </div>
-                <div class="feature-text">
-                    <h3>Understand what the universities are <span class="orange">looking for</span></h3>
-                    <p class="small-text">Pecan will scan the web to understand what your target schools want to see in candidates. It will then give you advice on how to present yourself that way.</p>
-                </div>
-            </div>
-
-            <div class="feature-item align-right">
-                <div class="feature-animation">
-                    <canvas class="code-animation" data-animation="6"></canvas>
-                </div>
-                <div class="feature-text">
-                    <h3><span class="orange">Come across better</span> to admissions teams</h3>
-                    <p class="small-text">Talk to pecan and it will ask you questions to get to know you better. Its goal is to pass information to the universities about the things that make you stand out.</p>
+                    <h3>Automate hyper-personalized communication campaigns</h3>
+                    <p class="small-text">Mimic high-touch comms without the need for a massive team. Pecan drafts out one email per interested alum, and autonomously reaches out.</p>
                 </div>
             </div>
         </section>

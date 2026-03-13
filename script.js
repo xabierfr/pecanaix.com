@@ -1,19 +1,7 @@
-// Global state
-let currentUserType = 'student';
-
-// DOM elements
-const userToggle = document.getElementById('userToggle');
-const studentLabel = document.getElementById('studentLabel');
-const universityLabel = document.getElementById('universityLabel');
-const universityContent = document.getElementById('universityContent');
-const studentContent = document.getElementById('studentContent');
-
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
-    initializeToggle();
     initializeAnimations();
     initializeScrollAnimations();
-    updateContent();
 });
 
 // Scroll animations
@@ -35,60 +23,6 @@ function initializeScrollAnimations() {
     document.querySelectorAll('.fade-in-on-scroll').forEach(element => {
         observer.observe(element);
     });
-}
-
-// Toggle functionality
-function initializeToggle() {
-    userToggle.addEventListener('click', toggleUserType);
-    studentLabel.addEventListener('click', () => switchToUserType('student'));
-    universityLabel.addEventListener('click', () => switchToUserType('university'));
-}
-
-function toggleUserType() {
-    currentUserType = currentUserType === 'student' ? 'university' : 'student';
-    updateContent();
-}
-
-function switchToUserType(type) {
-    if (currentUserType !== type) {
-        currentUserType = type;
-        updateContent();
-    }
-}
-
-function updateContent() {
-    console.log('Switching to:', currentUserType);
-    
-    // Update toggle state
-    if (currentUserType === 'university') {
-        userToggle.classList.add('university-mode');
-        universityLabel.classList.add('active');
-        studentLabel.classList.remove('active');
-        
-        // Show university content
-        universityContent.style.display = 'block';
-        studentContent.style.display = 'none';
-    } else {
-        userToggle.classList.remove('university-mode');
-        studentLabel.classList.add('active');
-        universityLabel.classList.remove('active');
-        
-        // Show student content
-        studentContent.style.display = 'block';
-        universityContent.style.display = 'none';
-    }
-    
-    // Reset scroll animations when switching
-    document.querySelectorAll('.fade-in-on-scroll').forEach(element => {
-        element.classList.remove('visible');
-    });
-    
-    // Re-initialize animations after content is visible
-    setTimeout(() => {
-        console.log('Re-initializing animations...');
-        initializeScrollAnimations();
-        initializeAnimations();
-    }, 100);
 }
 
 // Code Animation System
@@ -123,342 +57,266 @@ function initializeAnimations() {
                 console.log('Starting animation 3');
                 animate3DCards(ctx, canvas);
                 break;
-            case '4':
-                console.log('Starting animation 4');
-                animateDocumentView(ctx, canvas);
-                break;
-            case '5':
-                console.log('Starting animation 5');
-                animateLayeredDocs(ctx, canvas);
-                break;
-            case '6':
-                console.log('Starting animation 6');
-                animateTerminalView(ctx, canvas);
-                break;
             default:
                 console.log('Unknown animation type:', animationType);
         }
     });
 }
 
-// Animation 1: Dashboard with evaluation criteria (university side)
+// Animation 1: Outlook email interface (university side)
 function animateChimation(ctx, canvas) {
     let animationProgress = 0;
     
+    const emailContent = {
+        to: "james.rodriguez@monzo.com",
+        subject: "Fintech Pitch Competition - Judge Invitation",
+        body: `Hi James,
+
+I hope you're well. I've been following your work at Monzo since you led the credit risk overhaul last year — really compelling stuff, and exactly the kind of experience our students need more exposure to.
+
+We're hosting a student fintech pitch competition next month and are putting together a small panel of judges. Given where you sit in the neobanking space, you'd bring a perspective that no one else on the panel can — someone who's actually had to make the hard product and risk decisions, not just advise on them.
+
+It's an evening commitment, roughly two hours, and a handful of the student teams pitching are specifically building in the banking infrastructure and payments space — so there's a reasonable chance you'll see something worth keeping an eye on.
+
+Would you be open to a quick call to hear more?
+
+Best,
+Sarah
+Alumni Engagement`
+    };
+    
+    let bodyTextProgress = 0;
+    const typingSpeed = 3; // characters per frame
+    let showSentConfirmation = false;
+    let sentTimer = 0;
+    
     function draw() {
-        // Dark background
-        ctx.fillStyle = '#1a1d2e';
+        // White background (Outlook style)
+        ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        // Top metric cards
-        const cardWidth = 160;
-        const cardHeight = 80;
-        const cardY = 30;
-        const cardSpacing = 20;
-        const startX = 40;
+        const padding = 20;
+        const headerHeight = 120;
         
-        // Card 1 - Total Applicants
-        drawMetricCard(ctx, startX, cardY, cardWidth, cardHeight, 
-            'Total Applicants', '1,247', '#a855f7', '#9333ea');
+        // Outlook header bar (blue)
+        ctx.fillStyle = '#0078d4';
+        ctx.fillRect(0, 0, canvas.width, 50);
         
-        // Card 2 - Avg Score
-        drawMetricCard(ctx, startX + cardWidth + cardSpacing, cardY, cardWidth, cardHeight, 
-            'Avg Score', '82.5', '#06b6d4', '#0891b2');
-        
-        // Card 3 - Acceptance Rate
-        drawMetricCard(ctx, startX + (cardWidth + cardSpacing) * 2, cardY, cardWidth, cardHeight, 
-            'Acceptance Rate', '18%', '#ec4899', '#db2777');
-        
-        // Donut chart - Application Status
-        const donutX = 140;
-        const donutY = 280;
-        const donutRadius = 70;
-        
+        // "New Message" text
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 14px Inter, sans-serif';
+        ctx.font = 'bold 16px Open Sans, sans-serif';
         ctx.textAlign = 'left';
-        ctx.fillText('Application Status', 40, 180);
+        ctx.fillText('New Message', padding, 32);
         
-        drawDonutChart(ctx, donutX, donutY, donutRadius, [
-            { label: 'Accepted', value: 18, color: '#06b6d4' },
-            { label: 'Pending', value: 45, color: '#a855f7' },
-            { label: 'Rejected', value: 22, color: '#ec4899' },
-            { label: 'Waitlist', value: 15, color: '#f59e0b' }
-        ], animationProgress);
+        // To field
+        ctx.fillStyle = '#333333';
+        ctx.font = '14px Open Sans, sans-serif';
+        ctx.fillText('To:', padding, 80);
         
-        // Legend for donut chart (animated)
-        if (animationProgress > 0.3) {
-            const legendX = 240;
-            const legendY = 220;
-            const legendItems = [
-                { label: 'Accepted', color: '#06b6d4' },
-                { label: 'Pending', color: '#a855f7' },
-                { label: 'Rejected', color: '#ec4899' },
-                { label: 'Waitlist', color: '#f59e0b' }
-            ];
-            
-            const legendOpacity = Math.min(1, (animationProgress - 0.3) / 0.3);
-            
-            legendItems.forEach((item, i) => {
-                const y = legendY + (i * 25);
-                
-                // Color dot
-                ctx.fillStyle = item.color;
-                ctx.globalAlpha = legendOpacity;
-                ctx.beginPath();
-                ctx.arc(legendX, y, 5, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Label
-                ctx.fillStyle = '#e0e0e0';
-                ctx.font = '12px Inter, sans-serif';
-                ctx.textAlign = 'left';
-                ctx.fillText(item.label, legendX + 15, y + 4);
-                ctx.globalAlpha = 1;
-            });
+        ctx.fillStyle = '#0078d4';
+        ctx.font = '14px Open Sans, sans-serif';
+        ctx.fillText(emailContent.to, padding + 30, 80);
+        
+        // Subject field
+        ctx.fillStyle = '#333333';
+        ctx.font = '14px Open Sans, sans-serif';
+        ctx.fillText('Subject:', padding, 105);
+        
+        ctx.fillStyle = '#333333';
+        ctx.font = '14px Open Sans, sans-serif';
+        ctx.fillText(emailContent.subject, padding + 60, 105);
+        
+        // Separator line
+        ctx.strokeStyle = '#e0e0e0';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(padding, headerHeight);
+        ctx.lineTo(canvas.width - padding, headerHeight);
+        ctx.stroke();
+        
+        // Email body
+        if (bodyTextProgress < emailContent.body.length) {
+            bodyTextProgress += typingSpeed;
+            bodyTextProgress = Math.min(bodyTextProgress, emailContent.body.length);
+        } else if (!showSentConfirmation && sentTimer > 60) {
+            showSentConfirmation = true;
         }
         
-        // Bar chart - No title
-        const barData = [
-            { value: 85, color: '#06b6d4' },
-            { value: 72, color: '#a855f7' },
-            { value: 78, color: '#ec4899' },
-            { value: 68, color: '#f59e0b' }
-        ];
+        const displayBody = emailContent.body.substring(0, Math.floor(bodyTextProgress));
+        const lines = displayBody.split('\n');
         
-        const barStartX = 380;
-        const barStartY = 210;
-        const barWidth = 35;
-        const barSpacingX = 50;
-        const maxBarHeight = 150;
+        ctx.fillStyle = '#333333';
+        ctx.font = '13px Open Sans, sans-serif';
+        ctx.textAlign = 'left';
         
-        barData.forEach((bar, i) => {
-            const x = barStartX + (i * barSpacingX);
-            const barHeight = (bar.value / 100) * maxBarHeight * Math.min(1, animationProgress);
-            const y = barStartY + maxBarHeight - barHeight;
-            
-            // Bar gradient
-            const gradient = ctx.createLinearGradient(x, y, x, barStartY + maxBarHeight);
-            gradient.addColorStop(0, bar.color);
-            gradient.addColorStop(1, bar.color + '66');
-            
-            ctx.fillStyle = gradient;
-            ctx.fillRect(x, y, barWidth, barHeight);
-            
-            // Value on top
-            if (animationProgress > 0.5) {
-                ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 14px Inter, sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText(bar.value, x + barWidth / 2, y - 8);
+        let yPos = headerHeight + 30;
+        lines.forEach((line, i) => {
+            if (yPos < canvas.height - 60) {
+                ctx.fillText(line, padding + 10, yPos);
+                yPos += 20;
             }
         });
         
-        // Animate progress
-        if (animationProgress < 1) {
-            animationProgress += 0.015;
-        } else {
-            setTimeout(() => {
-                animationProgress = 0;
-            }, 2000);
+        // Send button (bottom right)
+        if (bodyTextProgress >= emailContent.body.length) {
+            sentTimer++;
+            
+            const buttonWidth = 80;
+            const buttonHeight = 35;
+            const buttonX = canvas.width - padding - buttonWidth;
+            const buttonY = canvas.height - padding - buttonHeight - 10;
+            
+            if (!showSentConfirmation) {
+                // Send button
+                ctx.fillStyle = '#0078d4';
+                ctx.fillRect(buttonX, buttonY, buttonWidth, buttonHeight);
+                
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 14px Open Sans, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Send', buttonX + buttonWidth / 2, buttonY + 22);
+            } else {
+                // Sent confirmation
+                ctx.fillStyle = '#107c10';
+                ctx.fillRect(buttonX - 20, buttonY, buttonWidth + 40, buttonHeight);
+                
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 14px Open Sans, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('✓ Sent', buttonX + buttonWidth / 2 + 10, buttonY + 22);
+            }
         }
         
+        animationProgress += 0.01;
         requestAnimationFrame(draw);
-    }
-    
-    function drawMetricCard(ctx, x, y, width, height, label, value, color1, color2) {
-        // Card background with gradient
-        const gradient = ctx.createLinearGradient(x, y, x + width, y + height);
-        gradient.addColorStop(0, color1);
-        gradient.addColorStop(1, color2);
-        
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.roundRect(x, y, width, height, 12);
-        ctx.fill();
-        
-        // Label
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-        ctx.font = '11px Inter, sans-serif';
-        ctx.textAlign = 'left';
-        ctx.fillText(label, x + 15, y + 25);
-        
-        // Value
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 28px Inter, sans-serif';
-        ctx.fillText(value, x + 15, y + 58);
-    }
-    
-    function drawDonutChart(ctx, centerX, centerY, radius, data, progress) {
-        const innerRadius = radius * 0.6;
-        let currentAngle = -Math.PI / 2;
-        const total = data.reduce((sum, item) => sum + item.value, 0);
-        
-        data.forEach(item => {
-            const sliceAngle = (item.value / total) * Math.PI * 2 * Math.min(1, progress);
-            
-            // Draw slice
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
-            ctx.arc(centerX, centerY, innerRadius, currentAngle + sliceAngle, currentAngle, true);
-            ctx.closePath();
-            
-            ctx.fillStyle = item.color;
-            ctx.fill();
-            
-            currentAngle += sliceAngle;
-        });
-        
-        // Center circle
-        ctx.fillStyle = '#1a1d2e';
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, innerRadius, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Center text
-        if (progress > 0.5) {
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 20px Inter, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText('1,247', centerX, centerY + 7);
-        }
     }
     
     draw();
 }
 
-// Animation 2: 3D Orbs converging to one big sphere (university side)
+// Animation 2: Chat interface only (university side)
 function animateSlashes(ctx, canvas) {
-    const orbs = [];
-    const labels = [
-        'Data Analysis',
-        'Dashboard Integration',
-        'Smart Matching',
-        'AI-Ready Assessments'
-    ];
-    
-    let animationPhase = 0; // 0: orbiting, 1: converging, 2: merged (final state)
-    let phaseProgress = 0;
     let phaseTimer = 0;
     
-    // Create orbs
-    for (let i = 0; i < 4; i++) {
-        orbs.push({
-            x: canvas.width / 2,
-            y: canvas.height / 2,
-            radius: 40 + Math.random() * 20,
-            angle: (Math.PI * 2 / 4) * i,
-            distance: 120,
-            initialDistance: 120,
-            color: `hsl(${240 + i * 30}, 80%, 60%)`,
-            label: labels[i],
-            rotation: 0,
-            targetX: canvas.width / 2,
-            targetY: canvas.height / 2,
-            initialRadius: 40 + Math.random() * 20
+    // Chat messages
+    const userMessage = "What potential fintech networking events should we run in October?";
+    const pecanResponse = "Many of your alumni are interested in breaking into credit risk at neobanks. Alberto Fernandez just graduated last year and works at Monzo; I would recommend reaching out to him via the following alumni email. I will draft it out for you.";
+    
+    let userTextProgress = userMessage.length; // Start with full message
+    let pecanTextProgress = 0;
+    const typingSpeed = 1; // characters per frame (slower)
+    
+    function drawChatInterface() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        const padding = 20;
+        const messageWidth = canvas.width - padding * 2 - 40;
+        
+        // User message bubble (right side) - always shown
+        if (userTextProgress > 0) {
+            const displayText = userMessage.substring(0, Math.floor(userTextProgress));
+            const lines = wrapText(ctx, displayText, messageWidth - 40);
+            const bubbleHeight = lines.length * 22 + 20;
+            const bubbleY = 70; // Lower to make room for label
+            const bubbleX = canvas.width - padding - messageWidth;
+            
+            // "You" label above bubble
+            ctx.fillStyle = '#666666';
+            ctx.font = 'bold 12px Open Sans, sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText('You', canvas.width - padding - 10, bubbleY - 10);
+            
+            // User bubble (orange)
+            ctx.fillStyle = '#ff8c42';
+            roundRect(ctx, bubbleX, bubbleY, messageWidth, bubbleHeight, 15);
+            ctx.fill();
+            
+            // User text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '14px Open Sans, sans-serif';
+            ctx.textAlign = 'left';
+            lines.forEach((line, i) => {
+                ctx.fillText(line, bubbleX + 15, bubbleY + 25 + i * 22);
+            });
+        }
+        
+        // Pecan response bubble (left side)
+        if (pecanTextProgress > 0) {
+            const displayText = pecanResponse.substring(0, Math.floor(pecanTextProgress));
+            const lines = wrapText(ctx, displayText, messageWidth - 40);
+            const bubbleHeight = lines.length * 22 + 20;
+            const bubbleY = 190; // Adjusted for label
+            
+            // "Pecan" label above bubble
+            ctx.fillStyle = '#666666';
+            ctx.font = 'bold 12px Open Sans, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('Pecan', padding + 10, bubbleY - 10);
+            
+            // Pecan bubble (purple)
+            ctx.fillStyle = '#a855f7';
+            roundRect(ctx, padding, bubbleY, messageWidth, bubbleHeight, 15);
+            ctx.fill();
+            
+            // Pecan text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '14px Open Sans, sans-serif';
+            ctx.textAlign = 'left';
+            lines.forEach((line, i) => {
+                ctx.fillText(line, padding + 15, bubbleY + 25 + i * 22);
+            });
+        }
+    }
+    
+    function wrapText(ctx, text, maxWidth) {
+        const words = text.split(' ');
+        const lines = [];
+        let currentLine = '';
+        
+        words.forEach(word => {
+            const testLine = currentLine + (currentLine ? ' ' : '') + word;
+            const metrics = ctx.measureText(testLine);
+            
+            if (metrics.width > maxWidth && currentLine) {
+                lines.push(currentLine);
+                currentLine = word;
+            } else {
+                currentLine = testLine;
+            }
         });
+        
+        if (currentLine) {
+            lines.push(currentLine);
+        }
+        
+        return lines;
+    }
+    
+    function roundRect(ctx, x, y, width, height, radius) {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
     }
     
     function draw() {
-        // Dark background
-        ctx.fillStyle = '#1e1e1e';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
         phaseTimer++;
         
-        // Phase management
-        if (animationPhase === 0 && phaseTimer > 180) { // Orbit for 3 seconds
-            animationPhase = 1;
-            phaseProgress = 0;
-            phaseTimer = 0;
-        } else if (animationPhase === 1 && phaseProgress >= 1) { // Converging complete
-            animationPhase = 2;
-            phaseProgress = 0;
-            phaseTimer = 0;
-        }
-        // Animation stops at merged state - no more phase transitions
+        drawChatInterface();
         
-        if (animationPhase === 1) { // Converging
-            phaseProgress += 0.02;
-            phaseProgress = Math.min(1, phaseProgress);
+        // User message is already shown, start typing Pecan response after short delay
+        if (phaseTimer > 30) { // Wait 0.5 seconds
+            if (pecanTextProgress < pecanResponse.length) {
+                pecanTextProgress += typingSpeed;
+            }
         }
-        
-        orbs.forEach((orb, i) => {
-            let x, y, radius;
-            
-            if (animationPhase === 0) { // Orbiting phase
-                orb.angle += 0.015;
-                x = canvas.width / 2 + Math.cos(orb.angle) * orb.distance;
-                y = canvas.height / 2 + Math.sin(orb.angle) * orb.distance;
-                radius = orb.radius;
-            } else if (animationPhase === 1) { // Converging phase
-                const startX = canvas.width / 2 + Math.cos(orb.angle) * orb.distance;
-                const startY = canvas.height / 2 + Math.sin(orb.angle) * orb.distance;
-                
-                // Smooth easing function for convergence
-                const easeProgress = 1 - Math.pow(1 - phaseProgress, 3);
-                
-                x = startX + (orb.targetX - startX) * easeProgress;
-                y = startY + (orb.targetY - startY) * easeProgress;
-                radius = orb.radius * (1 - easeProgress * 0.7); // Shrink as they converge
-            } else if (animationPhase === 2) { // Merged phase - single big sphere (final state)
-                x = canvas.width / 2;
-                y = canvas.height / 2;
-                
-                // Only draw one large sphere (use first orb)
-                if (i === 0) {
-                    radius = 100 + Math.sin(phaseTimer * 0.1) * 10; // Pulsing effect
-                    
-                    // Create a multi-colored gradient for the merged sphere
-                    const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
-                    gradient.addColorStop(0, '#ffffff');
-                    gradient.addColorStop(0.3, 'hsl(240, 80%, 70%)');
-                    gradient.addColorStop(0.6, 'hsl(270, 80%, 60%)');
-                    gradient.addColorStop(0.8, 'hsl(300, 80%, 50%)');
-                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0.8)');
-                    
-                    ctx.fillStyle = gradient;
-                    ctx.beginPath();
-                    ctx.arc(x, y, radius, 0, Math.PI * 2);
-                    ctx.fill();
-                    
-                    // Add sparkle effect
-                    for (let j = 0; j < 8; j++) {
-                        const sparkleAngle = (phaseTimer * 0.05) + (j * Math.PI / 4);
-                        const sparkleDistance = radius * 0.7;
-                        const sparkleX = x + Math.cos(sparkleAngle) * sparkleDistance;
-                        const sparkleY = y + Math.sin(sparkleAngle) * sparkleDistance;
-                        
-                        ctx.fillStyle = `rgba(255, 255, 255, ${0.5 + Math.sin(phaseTimer * 0.1 + j) * 0.3})`;
-                        ctx.beginPath();
-                        ctx.arc(sparkleX, sparkleY, 3, 0, Math.PI * 2);
-                        ctx.fill();
-                    }
-                }
-                return; // Skip drawing individual orbs
-            }
-            
-            // Draw individual orb (except in merged phase)
-            if (animationPhase !== 2) {
-                const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
-                gradient.addColorStop(0, orb.color);
-                gradient.addColorStop(0.7, orb.color);
-                gradient.addColorStop(1, 'rgba(0, 0, 0, 0.8)');
-                
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(x, y, radius, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Add subtle glow effect
-                ctx.shadowColor = orb.color;
-                ctx.shadowBlur = 15;
-                ctx.beginPath();
-                ctx.arc(x, y, radius, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.shadowBlur = 0;
-            }
-        });
         
         requestAnimationFrame(draw);
     }
@@ -478,7 +336,7 @@ function animate3DCards(ctx, canvas) {
         // Row 4 (right to left)
         ['Leadership Role', 'Community Service', 'Sports Captain', 'Music Performance', 'Drama Club', 'Art Exhibition'],
         // Row 5 (left to right)
-        ['Essay Score: 95', 'Recommendation: Excellent', 'Interview: Strong', 'Portfolio: Outstanding', 'Writing Award', 'Public Speaking'],
+        ['Essay Score: 95', 'Recommendations', 'Interview: Strong', 'Portfolio: Outstanding', 'Writing Award', 'Public Speaking'],
         // Row 6 (right to left)
         ['Language: Spanish', 'Language: French', 'Study Abroad', 'Cultural Exchange', 'Language: Mandarin', 'Translation Work'],
         // Row 7 (left to right)
@@ -511,9 +369,8 @@ function animate3DCards(ctx, canvas) {
     let scrollOffsets = Array(rows).fill(0);
     
     function draw() {
-        // Dark background
-        ctx.fillStyle = '#1e1e1e';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Transparent background
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         for (let row = 0; row < rows; row++) {
             const y = 10 + row * rowHeight;
@@ -589,425 +446,6 @@ function animate3DCards(ctx, canvas) {
     draw();
 }
 
-// Animation 4: Chat Interface (AI and Student interaction)
-function animateDocumentView(ctx, canvas) {
-    const messages = [
-        {
-            sender: 'ai',
-            text: 'Just tell me what you have been thinking about and I will try to help',
-            visible: true
-        },
-        {
-            sender: 'student',
-            text: 'I want to study computer science but I\'m not sure which universities would be the best fit for me...',
-            visible: false,
-            charIndex: 0
-        }
-    ];
-    
-    let studentTyping = false;
-    let typingStartTime = 0;
-    const typingDelay = 2000; // Wait 2 seconds before student starts typing
-    let waveTime = 0;
-    
-    function draw() {
-        // Dark background
-        ctx.fillStyle = '#1e1e1e';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        let yPosition = 120;
-        
-        // Draw AI message
-        const aiMsg = messages[0];
-        
-        // AI label
-        ctx.fillStyle = '#ff8c42';
-        ctx.font = 'bold 18px Inter, sans-serif';
-        ctx.textAlign = 'left';
-        ctx.fillText('Pecan AI:', 40, yPosition);
-        
-        yPosition += 40;
-        
-        // AI message text
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '22px Inter, sans-serif';
-        ctx.textAlign = 'left';
-        
-        const aiWords = aiMsg.text.split(' ');
-        let aiLine = '';
-        let aiLineY = yPosition;
-        const maxWidth = canvas.width - 80;
-        
-        aiWords.forEach((word, i) => {
-            const testLine = aiLine + word + ' ';
-            const metrics = ctx.measureText(testLine);
-            if (metrics.width > maxWidth && i > 0) {
-                ctx.fillText(aiLine, 40, aiLineY);
-                aiLine = word + ' ';
-                aiLineY += 35;
-            } else {
-                aiLine = testLine;
-            }
-        });
-        ctx.fillText(aiLine, 40, aiLineY);
-        
-        yPosition = aiLineY + 80;
-        
-        // Start typing after delay
-        if (!studentTyping && Date.now() - typingStartTime > typingDelay) {
-            studentTyping = true;
-            messages[1].visible = true;
-        }
-        
-        // Draw student message (typing effect)
-        if (messages[1].visible) {
-            const studentMsg = messages[1];
-            
-            // Student label with Siri-like animation
-            ctx.fillStyle = '#d946ef';
-            ctx.font = 'bold 18px Inter, sans-serif';
-            ctx.textAlign = 'right';
-            ctx.fillText('You:', canvas.width - 40, yPosition);
-            
-            // Siri-like waveform animation next to "You:" - only animate while typing
-            const waveX = canvas.width - 100;
-            const waveY = yPosition - 6;
-            const numBars = 8;
-            const barWidth = 3;
-            const barSpacing = 5;
-            const maxBarHeight = 20;
-            const isTyping = studentMsg.charIndex < studentMsg.text.length;
-            
-            for (let i = 0; i < numBars; i++) {
-                let barHeight;
-                if (isTyping) {
-                    // Animated bars while typing
-                    barHeight = Math.abs(Math.sin(waveTime + i * 0.5)) * maxBarHeight * 0.5 + maxBarHeight * 0.3;
-                } else {
-                    // Static minimal bars when done typing
-                    barHeight = maxBarHeight * 0.2;
-                }
-                
-                const x = waveX - (numBars * (barWidth + barSpacing)) + i * (barWidth + barSpacing);
-                const y = waveY - barHeight / 2;
-                
-                // Gradient for bars
-                const gradient = ctx.createLinearGradient(x, y, x, y + barHeight);
-                gradient.addColorStop(0, '#d946ef');
-                gradient.addColorStop(0.5, '#a855f7');
-                gradient.addColorStop(1, '#d946ef');
-                
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.roundRect(x, y, barWidth, barHeight, barWidth / 2);
-                ctx.fill();
-            }
-            
-            yPosition += 40;
-            
-            // Student message text (typing effect)
-            ctx.fillStyle = '#ffffff';
-            ctx.font = '22px Inter, sans-serif';
-            ctx.textAlign = 'right';
-            
-            const displayText = studentMsg.text.substring(0, studentMsg.charIndex);
-            const words = displayText.split(' ');
-            let line = '';
-            let lineY = yPosition;
-            const maxWidth = canvas.width - 80;
-            const lines = [];
-            
-            // Build lines array
-            words.forEach((word, i) => {
-                const testLine = line + word + ' ';
-                const metrics = ctx.measureText(testLine);
-                if (metrics.width > maxWidth && i > 0) {
-                    lines.push(line);
-                    line = word + ' ';
-                } else {
-                    line = testLine;
-                }
-            });
-            if (line) lines.push(line);
-            
-            // Draw lines right-aligned
-            lines.forEach((textLine, i) => {
-                ctx.fillText(textLine, canvas.width - 40, lineY);
-                lineY += 35;
-            });
-            
-            // Typing cursor
-            if (studentMsg.charIndex < studentMsg.text.length && Math.floor(Date.now() / 500) % 2 === 0) {
-                const lastLine = lines[lines.length - 1] || '';
-                const cursorX = canvas.width - 40 - ctx.measureText(lastLine).width;
-                ctx.fillText('|', cursorX + ctx.measureText(lastLine).width, lineY - 35);
-            }
-            
-            // Typing animation
-            if (Math.random() > 0.85 && studentMsg.charIndex < studentMsg.text.length) {
-                studentMsg.charIndex++;
-            }
-            
-            // Reset after completion
-            if (studentMsg.charIndex >= studentMsg.text.length) {
-                setTimeout(() => {
-                    studentMsg.charIndex = 0;
-                    studentMsg.visible = false;
-                    studentTyping = false;
-                    typingStartTime = Date.now();
-                }, 3000);
-            }
-        } else {
-            typingStartTime = Date.now();
-        }
-        
-        // Update wave animation only while typing
-        if (messages[1].visible && messages[1].charIndex < messages[1].text.length) {
-            waveTime += 0.15;
-        }
-        
-        requestAnimationFrame(draw);
-    }
-    
-    draw();
-}
-
-// Animation 5: Scanning animation with dots (for student side)
-function animateLayeredDocs(ctx, canvas) {
-    const numDots = 8;
-    const dotSize = 15;
-    const spacing = 50;
-    const centerY = canvas.height / 2;
-    const startX = (canvas.width - (numDots * spacing)) / 2;
-    
-    let time = 0;
-    
-    function draw() {
-        // Dark background
-        ctx.fillStyle = '#1e1e1e';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        // "Scanning the web" text at top
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '28px Inter, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('Scanning the web', canvas.width / 2, centerY - 80);
-        
-        // Draw dots in a straight horizontal line
-        for (let i = 0; i < numDots; i++) {
-            const x = startX + i * spacing;
-            const y = centerY;
-            
-            // Calculate wave effect for size and opacity
-            const wave = Math.sin(time + i * 0.5);
-            const size = dotSize * (0.6 + wave * 0.4);
-            const opacity = 0.4 + wave * 0.6;
-            
-            // Color gradient from white to pink
-            const colorIntensity = i / numDots;
-            const r = 255;
-            const g = Math.floor(255 * (1 - colorIntensity * 0.5));
-            const b = Math.floor(255 * (1 - colorIntensity * 0.3));
-            
-            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${opacity})`;
-            ctx.beginPath();
-            ctx.arc(x, y, size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-        
-        // Subtitle text at bottom
-        ctx.fillStyle = '#888888';
-        ctx.font = '18px Inter, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('Finding the best matches for you', canvas.width / 2, centerY + 80);
-        
-        time += 0.08;
-        requestAnimationFrame(draw);
-    }
-    
-    draw();
-}
-
-// Animation 6: Scrolling attributes list (for student side)
-function animateTerminalView(ctx, canvas) {
-    const attributes = [
-        'Enjoys building computer games',
-        'Volunteers at the local dog shelter',
-        'Captain of the debate team',
-        'Passionate about environmental science',
-        'Plays violin in the school orchestra',
-        'Tutors younger students in math',
-        'Founded a coding club at school',
-        'Writes poetry in spare time',
-        'Active member of robotics team',
-        'Organizes community food drives',
-        'Speaks three languages fluently',
-        'Loves solving complex puzzles'
-    ];
-    
-    let scrollOffset = 0;
-    const lineHeight = 60;
-    const startY = 100;
-    
-    function draw() {
-        // Dark background
-        ctx.fillStyle = '#1e1e1e';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        // Create clipping region for scrolling area
-        ctx.save();
-        ctx.beginPath();
-        ctx.rect(0, 0, canvas.width, canvas.height);
-        ctx.clip();
-        
-        // Draw attributes twice for seamless loop
-        for (let loop = 0; loop < 2; loop++) {
-            attributes.forEach((attr, i) => {
-                const y = startY + (i * lineHeight) + (loop * attributes.length * lineHeight) - scrollOffset;
-                
-                // Only draw if visible
-                if (y > -30 && y < canvas.height + 30) {
-                    // Calculate opacity based on position (fade at edges)
-                    let opacity = 1;
-                    if (y < 100) {
-                        opacity = y / 100;
-                    } else if (y > canvas.height - 100) {
-                        opacity = (canvas.height - y) / 100;
-                    }
-                    opacity = Math.max(0, Math.min(1, opacity));
-                    
-                    // Bullet point
-                    ctx.fillStyle = `rgba(212, 70, 239, ${opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(60, y, 6, 0, Math.PI * 2);
-                    ctx.fill();
-                    
-                    // Attribute text
-                    ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-                    ctx.font = '20px Inter, sans-serif';
-                    ctx.textAlign = 'left';
-                    ctx.fillText(attr, 90, y + 7);
-                }
-            });
-        }
-        
-        ctx.restore();
-        
-        // Scroll animation
-        scrollOffset += 0.5;
-        
-        // Reset when first set has scrolled completely
-        if (scrollOffset >= attributes.length * lineHeight) {
-            scrollOffset = 0;
-        }
-        
-        requestAnimationFrame(draw);
-    }
-    
-    draw();
-}
-
-// Matrix-style code rain (alternative animation)
-function animateCodeRain(ctx, canvas) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-    
-    // Initialize drops
-    for (let i = 0; i < columns; i++) {
-        drops[i] = Math.random() * canvas.height / fontSize;
-    }
-    
-    function draw() {
-        // Semi-transparent black to create fade effect
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#ff8c42';
-        ctx.font = fontSize + 'px monospace';
-        
-        for (let i = 0; i < drops.length; i++) {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            const x = i * fontSize;
-            const y = drops[i] * fontSize;
-            
-            ctx.fillText(text, x, y);
-            
-            // Reset drop randomly
-            if (y > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            
-            drops[i]++;
-        }
-    }
-    
-    setInterval(draw, 50);
-}
-
-// Typing effect animation
-function animateTyping(ctx, canvas) {
-    const lines = [
-        'const pecan = new AI();',
-        'pecan.analyze(student);',
-        'pecan.recommend();',
-        '// Finding best match...'
-    ];
-    
-    let currentLine = 0;
-    let currentChar = 0;
-    let y = 30;
-    
-    function draw() {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#ff8c42';
-        ctx.font = '14px "Courier New", monospace';
-        
-        // Draw completed lines
-        for (let i = 0; i < currentLine; i++) {
-            ctx.fillText(lines[i], 10, 30 + (i * 25));
-        }
-        
-        // Draw current line being typed
-        if (currentLine < lines.length) {
-            const currentText = lines[currentLine].substring(0, currentChar);
-            ctx.fillText(currentText, 10, 30 + (currentLine * 25));
-            
-            // Add cursor
-            const cursorX = ctx.measureText(currentText).width + 10;
-            if (Math.floor(Date.now() / 500) % 2 === 0) {
-                ctx.fillText('_', cursorX, 30 + (currentLine * 25));
-            }
-        }
-        
-        // Progress typing
-        if (Math.random() > 0.7 && currentChar < lines[currentLine].length) {
-            currentChar++;
-        }
-        
-        // Move to next line
-        if (currentChar >= lines[currentLine].length && Math.random() > 0.98) {
-            currentLine++;
-            currentChar = 0;
-            
-            // Reset after all lines
-            if (currentLine >= lines.length) {
-                setTimeout(() => {
-                    currentLine = 0;
-                    currentChar = 0;
-                }, 2000);
-            }
-        }
-        
-        requestAnimationFrame(draw);
-    }
-    
-    draw();
-}
-
 // Handle window resize
 window.addEventListener('resize', function() {
     const canvases = document.querySelectorAll('.code-animation');
@@ -1030,4 +468,147 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+});
+
+// Magnetic text effect for description
+let magneticAnimationRunning = false;
+let magneticAnimationId = null;
+
+function initMagneticText() {
+    const el = document.getElementById('magnetic-description');
+    
+    if (!el) {
+        return;
+    }
+    
+    // Check if already has character spans
+    const hasChars = el.querySelector('.char') !== null;
+    
+    if (!hasChars) {
+        // Get the plain text content, ignoring HTML tags
+        const text = el.innerText.trim();
+        
+        // Split into words first, then split each word into characters
+        const words = text.split(' ');
+        el.innerHTML = words.map((word, index) => {
+            const chars = word.split('').map(ch => `<span class="char">${ch}</span>`).join('');
+            // Make "Pecan" (first word) bold and orange
+            if (index === 0) {
+                return `<span class="word" style="color: #ff8c42; font-weight: 700;">${chars}</span>`;
+            }
+            return `<span class="word">${chars}</span>`;
+        }).join(' ');
+    }
+    
+    // Cancel any existing animation
+    if (magneticAnimationId) {
+        cancelAnimationFrame(magneticAnimationId);
+        magneticAnimationId = null;
+    }
+    
+    // Wait a bit for layout
+    setTimeout(() => {
+        const chars = [...el.querySelectorAll('.char')];
+        
+        if (chars.length === 0) {
+            return;
+        }
+        
+        const target = chars.map(() => ({ x: 0, y: 0 }));
+        const current = chars.map(() => ({ x: 0, y: 0 }));
+        
+        // Cache the resting position of each character
+        let origins = [];
+        
+        function cacheOrigins() {
+            chars.forEach(c => c.style.transform = 'none');
+            origins = chars.map(c => {
+                const r = c.getBoundingClientRect();
+                return { cx: r.left + r.width / 2, cy: r.top + r.height / 2 };
+            });
+        }
+        
+        cacheOrigins();
+        
+        // Remove old resize listener and add new one
+        window.removeEventListener('resize', cacheOrigins);
+        window.addEventListener('resize', cacheOrigins);
+        
+        let mouseX = -9999, mouseY = -9999;
+        
+        const mouseMoveHandler = (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        };
+        
+        // Remove old listener and add new one
+        window.removeEventListener('mousemove', mouseMoveHandler);
+        window.addEventListener('mousemove', mouseMoveHandler);
+        
+        const INFLUENCE = 150;
+        const STRENGTH = 60;
+        const LERP = 0.08;
+        
+        magneticAnimationRunning = true;
+        
+        function tick() {
+            if (!magneticAnimationRunning) return;
+            
+            if (origins.length === 0) {
+                magneticAnimationId = requestAnimationFrame(tick);
+                return;
+            }
+            
+            chars.forEach((char, i) => {
+                if (!origins[i]) return;
+                
+                const dx = origins[i].cx - mouseX;
+                const dy = origins[i].cy - mouseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist < INFLUENCE) {
+                    const force = (1 - dist / INFLUENCE) * STRENGTH;
+                    target[i].x = (dx / dist) * force;
+                    target[i].y = (dy / dist) * force;
+                } else {
+                    target[i].x = 0;
+                    target[i].y = 0;
+                }
+            });
+            
+            current.forEach((cur, i) => {
+                cur.x += (target[i].x - cur.x) * LERP;
+                cur.y += (target[i].y - cur.y) * LERP;
+                
+                // Calculate opacity based on movement distance
+                const moveDistance = Math.sqrt(cur.x * cur.x + cur.y * cur.y);
+                const maxDistance = STRENGTH;
+                const opacity = 1 - (moveDistance / maxDistance) * 0.4; // Fade to 60% opacity at max distance
+                
+                chars[i].style.transform = 
+                    `translate(${current[i].x.toFixed(2)}px, ${current[i].y.toFixed(2)}px)`;
+                chars[i].style.opacity = opacity.toFixed(2);
+            });
+            
+            magneticAnimationId = requestAnimationFrame(tick);
+        }
+        
+        tick();
+    }, 150);
+}
+
+// Run on load
+window.addEventListener('load', () => {
+    initMagneticText();
+});
+
+// Run on DOMContentLoaded as backup
+document.addEventListener('DOMContentLoaded', () => {
+    initMagneticText();
+});
+
+// Run on pageshow for back navigation - this is key for bfcache
+window.addEventListener('pageshow', (event) => {
+    // Always reinitialize on pageshow
+    setTimeout(initMagneticText, 50);
 });

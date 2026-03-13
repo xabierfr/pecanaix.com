@@ -244,3 +244,30 @@ document.addEventListener('keydown', function(e) {
         closeModal();
     }
 });
+
+
+// Scroll animations
+function initializeScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements with fade-in-on-scroll class
+    document.querySelectorAll('.fade-in-on-scroll').forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// Initialize animations on page load
+document.addEventListener('DOMContentLoaded', function() {
+    initializeScrollAnimations();
+});

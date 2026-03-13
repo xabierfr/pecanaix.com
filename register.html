@@ -5,16 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account - pecan.ai</title>
     <link rel="stylesheet" href="register-styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <a href="index.html"><h1>pecan.ai</h1></a>
+                <a href="index.html">
+                    <div class="logo-wrapper">
+                        <img src="Pecan Logo PNG.png" alt="pecan" class="logo-img">
+                        <span class="logo-text">pecan</span>
+                    </div>
+                </a>
             </div>
             <div class="nav-menu">
+                <a href="about-us.html" class="nav-link">About Us</a>
                 <a href="signup.html" class="nav-link">Sign In</a>
             </div>
         </div>
@@ -32,23 +38,6 @@
             <section class="signup-form-section">
                 <div class="form-container">
                     <form class="signup-form" id="signupForm">
-                        <!-- Account Type Selection -->
-                        <div class="form-group account-type-group">
-                            <label class="form-label">I am signing up as a:</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="accountType" value="student" checked>
-                                    <span class="radio-custom"></span>
-                                    <span class="radio-text">Student</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="accountType" value="university">
-                                    <span class="radio-custom"></span>
-                                    <span class="radio-text">University</span>
-                                </label>
-                            </div>
-                        </div>
-
                         <!-- Personal Information -->
                         <div class="form-row">
                             <div class="form-group">
@@ -80,29 +69,22 @@
                         </div>
 
                         <!-- University-specific fields -->
-                        <div class="university-fields" style="display: none;">
-                            <div class="form-group">
-                                <label for="university" class="form-label">University/Institution *</label>
-                                <input type="text" id="university" name="university" class="form-input">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="position" class="form-label">Your Position *</label>
-                                <select id="position" name="position" class="form-select">
-                                    <option value="">Select your role</option>
-                                    <option value="admissions-director">Admissions Director</option>
-                                    <option value="admissions-officer">Admissions Officer</option>
-                                    <option value="dean">Dean</option>
-                                    <option value="registrar">Registrar</option>
-                                    <option value="it-director">IT Director</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label for="university" class="form-label">University/Institution *</label>
+                            <input type="text" id="university" name="university" class="form-input" required>
                         </div>
-
-                        <!-- Student-specific fields -->
-                        <div class="student-fields">
-                            <!-- No additional fields for students -->
+                        
+                        <div class="form-group">
+                            <label for="position" class="form-label">Your Position *</label>
+                            <select id="position" name="position" class="form-select" required>
+                                <option value="">Select your role</option>
+                                <option value="admissions-director">Admissions Director</option>
+                                <option value="admissions-officer">Admissions Officer</option>
+                                <option value="dean">Dean</option>
+                                <option value="registrar">Registrar</option>
+                                <option value="it-director">IT Director</option>
+                                <option value="other">Other</option>
+                            </select>
                         </div>
 
                         <!-- Terms and Privacy -->

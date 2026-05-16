@@ -291,6 +291,14 @@
 
     .pilot-strip b { color: var(--ink-soft); font-weight: 600; }
 
+    .pilot-logo {
+      display: block;
+      height: 26px;
+      width: auto;
+      margin: 1rem auto 0;
+      opacity: 0.7;
+    }
+
     /* ---------- Section heading ---------- */
     .sec-eyebrow {
       font-size: 0.78rem;
@@ -641,43 +649,64 @@
     .integrations > .wrap > p {
       font-size: 1rem;
       color: var(--ink-soft);
-      max-width: 50ch;
-      margin: 0 auto 2.25rem;
+      max-width: 54ch;
+      margin: 0 auto 2.75rem;
       line-height: 1.6;
     }
 
-    .crm-marquee {
-      overflow: hidden;
-      width: 100%;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-    }
-
-    .crm-track {
+    .int-groups {
       display: flex;
-      gap: 3.25rem;
-      width: max-content;
-      animation: marquee 30s linear infinite;
-      padding: 0.5rem 0;
+      align-items: stretch;
+      justify-content: center;
+      gap: 2.25rem;
+      flex-wrap: wrap;
     }
 
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+    .int-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
     }
 
-    .crm-card {
+    .int-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .int-logos {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      height: 40px;
-      filter: grayscale(1);
-      opacity: 0.55;
+      gap: 1.75rem;
     }
 
-    .crm-card img { height: 27px; width: auto; object-fit: contain; }
-    .crm-card img.logo-sm { height: 31px; }
+    .int-logos img {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(1);
+      opacity: 0.7;
+      transition: opacity 0.18s, filter 0.18s;
+    }
+
+    .int-logos img:hover {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+
+    .int-divider {
+      width: 1px;
+      background: var(--line);
+      align-self: stretch;
+    }
+
+    @media (max-width: 760px) {
+      .int-groups { flex-direction: column; gap: 2rem; }
+      .int-divider { width: 60%; height: 1px; align-self: center; }
+    }
 
     /* ---------- CTA band ---------- */
     .cta-band {
@@ -1096,6 +1125,7 @@
   <div class="pilot-strip reveal">
     <div class="wrap">
       <p>Running a pilot with the Business School at <b>Imperial College London</b>.</p>
+      <img class="pilot-logo" src="Logos/imperial.png" alt="Imperial College London" />
     </div>
   </div>
 
@@ -1352,32 +1382,33 @@
   <!-- ---------- Integrations ---------- -->
   <section class="integrations reveal">
     <div class="wrap">
-      <h2>Works on top of your CRM stack.</h2>
+      <h2>Built on top of your CRM, connected to your event platforms and your email.</h2>
       <p>Pecan plugs into the tools you already run on. No migration, no new database to keep up to date.</p>
-    </div>
-    <div class="crm-marquee">
-      <div class="crm-track">
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></div>
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/hubspot.svg" alt="HubSpot" /></div>
-        <div class="crm-card"><img class="logo-sm" src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" alt="Microsoft Dynamics" /></div>
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/zoho.svg" alt="Zoho" /></div>
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/pipedrive.svg" alt="Pipedrive" /></div>
-        <div class="crm-card"><img class="logo-sm" src="https://cdn.worldvectorlogo.com/logos/microsoft-outlook-2.svg" alt="Outlook" /></div>
-        <div class="crm-card"><img class="logo-sm" src="https://cdn.worldvectorlogo.com/logos/monday-1.svg" alt="Monday" /></div>
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/intercom-1.svg" alt="Intercom" /></div>
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/oracle-6.svg" alt="Oracle" /></div>
-        <div class="crm-card"><img class="logo-sm" src="https://cdn.worldvectorlogo.com/logos/notion-2.svg" alt="Notion" /></div>
-        <!-- duplicate set for seamless loop -->
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></div>
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/hubspot.svg" alt="HubSpot" /></div>
-        <div class="crm-card"><img class="logo-sm" src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" alt="Microsoft Dynamics" /></div>
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/zoho.svg" alt="Zoho" /></div>
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/pipedrive.svg" alt="Pipedrive" /></div>
-        <div class="crm-card"><img class="logo-sm" src="https://cdn.worldvectorlogo.com/logos/microsoft-outlook-2.svg" alt="Outlook" /></div>
-        <div class="crm-card"><img class="logo-sm" src="https://cdn.worldvectorlogo.com/logos/monday-1.svg" alt="Monday" /></div>
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/intercom-1.svg" alt="Intercom" /></div>
-        <div class="crm-card"><img src="https://cdn.worldvectorlogo.com/logos/oracle-6.svg" alt="Oracle" /></div>
-        <div class="crm-card"><img class="logo-sm" src="https://cdn.worldvectorlogo.com/logos/notion-2.svg" alt="Notion" /></div>
+      <div class="int-groups">
+        <div class="int-group">
+          <div class="int-label">Your CRM</div>
+          <div class="int-logos">
+            <img src="Logos/Salesforce.png" alt="Salesforce" />
+            <img src="Logos/Hubspot.png" alt="HubSpot" />
+            <img src="Logos/Attio.png" alt="Attio" />
+          </div>
+        </div>
+        <div class="int-divider"></div>
+        <div class="int-group">
+          <div class="int-label">Event platforms</div>
+          <div class="int-logos">
+            <img src="Logos/eventbrite.png" alt="Eventbrite" />
+            <img src="Logos/Luma.png" alt="Luma" />
+          </div>
+        </div>
+        <div class="int-divider"></div>
+        <div class="int-group">
+          <div class="int-label">Your email</div>
+          <div class="int-logos">
+            <img src="Logos/Outlook.png" alt="Outlook" />
+            <img src="Logos/Gmail.png" alt="Gmail" />
+          </div>
+        </div>
       </div>
     </div>
   </section>

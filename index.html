@@ -325,39 +325,119 @@
       color: var(--ink);
     }
 
-    /* ---------- Intro ---------- */
-    .intro {
-      padding: 5.5rem 0 1rem;
+    /* ---------- Why Pecan ---------- */
+    .why {
+      padding: 6rem 0 2rem;
     }
 
-    .intro-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
-      align-items: start;
+    .why-head {
+      max-width: 620px;
+      margin: 0 auto 3rem;
+      text-align: center;
     }
 
-    .intro-left .sec-head {
-      font-size: clamp(1.9rem, 3.4vw, 2.9rem);
-    }
+    .why-head .sec-eyebrow { margin-bottom: 0.9rem; }
 
-    .intro-right {
-      padding-top: 0.4rem;
-    }
-
-    .intro-right p {
-      font-size: 1.05rem;
+    .why-lead {
+      font-size: 1.08rem;
       color: var(--ink-soft);
-      line-height: 1.68;
-    }
-
-    .intro-right p + p {
+      line-height: 1.6;
       margin-top: 1rem;
     }
 
-    @media (max-width: 820px) {
-      .intro-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .intro-right { padding-top: 0; }
+    .why-contrast {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .why-card {
+      border-radius: 18px;
+      padding: 2rem;
+      border: 1px solid var(--line);
+    }
+
+    .why-card.old {
+      background: var(--bg-warm);
+    }
+
+    .why-card.new {
+      background: var(--surface);
+      box-shadow: 0 14px 36px -22px rgba(70, 45, 20, 0.3);
+    }
+
+    .why-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .why-tag.old { background: var(--line); color: var(--ink-faint); }
+    .why-tag.new { background: var(--accent-soft); color: var(--accent); }
+
+    .why-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .why-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .why-mail {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.65rem 0.8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .why-mail.dim {
+      color: var(--ink-faint);
+      background: transparent;
+      border-color: var(--line-soft);
+    }
+
+    .why-card.new .why-mail {
+      border-left: 2px solid var(--accent);
+    }
+
+    .why-card > p {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 760px) {
+      .why-contrast { grid-template-columns: 1fr; }
+    }
+
+    /* ---------- How it works intro ---------- */
+    .how-intro {
+      padding: 5rem 0 0.5rem;
+      text-align: center;
+    }
+
+    .how-intro .sec-eyebrow { margin-bottom: 0.9rem; }
+
+    .how-intro .sec-head {
+      max-width: 18ch;
+      margin: 0 auto;
     }
 
     /* ---------- Feature rows ---------- */
@@ -372,7 +452,7 @@
       align-items: center;
     }
 
-    .feature:nth-of-type(even) .feature-visual { order: -1; }
+    .feature.flip .feature-visual { order: -1; }
 
     .feature h3 {
       font-size: clamp(1.45rem, 2.4vw, 1.95rem);
@@ -504,7 +584,7 @@
 
     @media (max-width: 880px) {
       .feature-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .feature:nth-of-type(even) .feature-visual { order: 0; }
+      .feature.flip .feature-visual { order: 0; }
     }
 
     /* ---------- Workflow diagram ---------- */
@@ -968,32 +1048,56 @@
     </div>
   </div>
 
-  <!-- ---------- Intro ---------- -->
-  <section class="intro reveal">
+  <!-- ---------- Why Pecan ---------- -->
+  <section class="why reveal" id="why">
     <div class="wrap">
-      <div class="intro-grid">
-        <div class="intro-left">
-          <div class="sec-eyebrow">Why Pecan</div>
-          <h2 class="sec-head">A mass email treats everyone the same.</h2>
+      <div class="why-head">
+        <div class="sec-eyebrow">Why Pecan</div>
+        <h2 class="sec-head">A mass email treats everyone the same.</h2>
+        <p class="why-lead">
+          Generic invites get ignored. Pecan writes a different one for every person on
+          your list, so the reason to attend is theirs.
+        </p>
+      </div>
+
+      <div class="why-contrast">
+        <div class="why-card old">
+          <div class="why-tag old">The usual way</div>
+          <h3>One email, sent to everyone.</h3>
+          <div class="why-stack">
+            <div class="why-mail dim">Dear all, you are invited to our event...</div>
+            <div class="why-mail dim">Dear all, you are invited to our event...</div>
+            <div class="why-mail dim">Dear all, you are invited to our event...</div>
+            <div class="why-mail dim">Dear all, you are invited to our event...</div>
+          </div>
+          <p>The same words for a thousand people. Quick to send, easy to ignore.</p>
         </div>
-        <div class="intro-right">
-          <p>
-            Most event outreach goes out as one message to a whole list. It is quick, but
-            generic, and generic invites get ignored.
-          </p>
-          <p>
-            Pecan does the opposite. Its AI writes a different invite for every person on
-            your list, grounded in what you already know about them, then sends and tracks
-            the lot. Built for events in regulated industries, where every message has to
-            be considered.
-          </p>
+
+        <div class="why-card new">
+          <div class="why-tag new">With Pecan</div>
+          <h3>One invite, written for each person.</h3>
+          <div class="why-stack">
+            <div class="why-mail">Hi Amara, the finance panel lines up with your work...</div>
+            <div class="why-mail">Hi Jack, an evening on robotics, close to your team...</div>
+            <div class="why-mail">Hi Priya, a reception for people in law and policy...</div>
+            <div class="why-mail">Hi Daniel, two people you know have already said yes...</div>
+          </div>
+          <p>Grounded in what you already know about them. Built for events in regulated industries, where every message has to be considered.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ---------- How it works header ---------- -->
+  <section class="how-intro reveal" id="how">
+    <div class="wrap">
+      <div class="sec-eyebrow">How it works</div>
+      <h2 class="sec-head">From one invite list to a full room, in three moves.</h2>
+    </div>
+  </section>
+
   <!-- ---------- Feature 1: personalised drafting ---------- -->
-  <section class="feature" id="how">
+  <section class="feature">
     <div class="wrap">
       <div class="feature-grid reveal">
         <div>
@@ -1049,7 +1153,7 @@
   </section>
 
   <!-- ---------- Feature 2: network nudges ---------- -->
-  <section class="feature">
+  <section class="feature flip">
     <div class="wrap">
       <div class="feature-grid reveal">
         <div>

@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pecan · Personalised event outreach for regulated industries</title>
-  <link rel="icon" type="image/png" href="Pecan Logo PNG.png" />
-  <link rel="apple-touch-icon" href="Pecan Logo PNG.png" />
+  <link rel="icon" type="image/png" href="/pecan/Pecan Logo PNG.png" />
+  <link rel="apple-touch-icon" href="/pecan/Pecan Logo PNG.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f3eee4;
-      --bg-warm: #ede5d6;
+      --bg: #ffffff;
+      --bg-warm: #f6f6f4;
       --surface: #ffffff;
       --ink: #211d16;
       --ink-soft: #5b5446;
@@ -20,8 +20,10 @@
       --accent: #b9521f;
       --accent-hover: #9c4318;
       --accent-soft: #ecd9c5;
-      --line: #ddd4c2;
-      --line-soft: #e7e0d1;
+      --accent-bright: #e85d1f;
+      --accent-tint: #fdeee2;
+      --line: #e8e6e1;
+      --line-soft: #efedea;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,7 +45,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(243, 238, 228, 0.85);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--line-soft);
     }
@@ -106,7 +108,26 @@
 
     /* ---------- Hero ---------- */
     .hero {
-      padding: 5.5rem 0 3rem;
+      padding: 6.5rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -180px;
+      right: -160px;
+      width: 620px;
+      height: 620px;
+      background: radial-gradient(circle at center, rgba(232, 93, 31, 0.16), rgba(232, 93, 31, 0) 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero .wrap {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-grid {
@@ -120,32 +141,56 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      color: var(--ink-soft);
-      margin-bottom: 1.5rem;
+      color: var(--accent);
+      background: var(--accent-tint);
+      border: 1px solid #f7d9c4;
+      padding: 0.4rem 0.8rem 0.4rem 0.65rem;
+      border-radius: 999px;
+      margin-bottom: 1.75rem;
+      letter-spacing: 0.01em;
     }
 
     .hero-pilot .dot {
       width: 7px; height: 7px;
       border-radius: 50%;
-      background: var(--accent);
+      background: var(--accent-bright);
+      box-shadow: 0 0 0 4px rgba(232, 93, 31, 0.18);
     }
 
     h1 {
-      font-size: clamp(2.5rem, 4.7vw, 3.85rem);
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      line-height: 1.06;
-      color: var(--ink);
+      font-size: clamp(3rem, 6.6vw, 5.6rem);
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      line-height: 0.98;
+      color: #0a0a0a;
+    }
+
+    h1 .hl {
+      position: relative;
+      white-space: nowrap;
+      color: var(--accent);
+      font-style: italic;
+    }
+    h1 .hl::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0.06em;
+      height: 0.22em;
+      background: var(--accent-tint);
+      z-index: -1;
+      border-radius: 4px;
     }
 
     .hero-sub {
-      font-size: clamp(1.02rem, 1.4vw, 1.16rem);
+      font-size: clamp(1.08rem, 1.5vw, 1.25rem);
       color: var(--ink-soft);
-      line-height: 1.62;
-      margin: 1.4rem 0 2rem;
-      max-width: 38ch;
+      line-height: 1.55;
+      margin: 1.5rem 0 2.25rem;
+      max-width: 42ch;
     }
 
     .hero-actions {
@@ -159,39 +204,47 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      background: var(--accent);
+      background: #0a0a0a;
       color: #fff;
-      font-size: 0.96rem;
+      font-size: 0.98rem;
       font-weight: 600;
-      padding: 0.78rem 1.35rem;
-      border-radius: 9px;
+      padding: 0.95rem 1.6rem;
+      border-radius: 999px;
       border: none;
       cursor: pointer;
       text-decoration: none;
       font-family: inherit;
-      transition: background 0.15s;
+      transition: background 0.15s, transform 0.15s;
     }
 
-    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-primary:hover { background: #000; transform: translateY(-1px); }
 
     .btn-text {
-      font-size: 0.96rem;
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.98rem;
       font-weight: 600;
-      color: var(--ink);
+      color: #0a0a0a;
       text-decoration: none;
-      padding: 0.78rem 0.4rem;
+      padding: 0.9rem 1.5rem;
+      border: 1.5px solid #0a0a0a;
+      border-radius: 999px;
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
     }
 
-    .btn-text:hover { color: var(--accent); }
+    .btn-text:hover { background: #0a0a0a; color: #fff; }
 
     /* hero product panel */
     .hero-panel {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 14px;
-      box-shadow: 0 18px 44px -22px rgba(70, 45, 20, 0.32);
+      box-shadow: 0 30px 60px -28px rgba(184, 82, 31, 0.35), 0 8px 20px -12px rgba(0,0,0,0.08);
       overflow: hidden;
+      position: relative;
     }
+
 
     .panel-bar {
       display: flex;
@@ -211,6 +264,245 @@
     }
 
     .panel-body { padding: 1.1rem; }
+
+    /* ---------- Hero animated demo ---------- */
+    .demo-stage-wrap {
+      position: relative;
+      height: 340px;
+      padding: 1.1rem;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(232,93,31,0.05), transparent 60%),
+        #fff;
+    }
+    .demo-stage {
+      position: absolute;
+      inset: 1.1rem;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    .demo-stage.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* shared demo bits */
+    .demo-row {
+      display: flex; align-items: center; gap: 0.65rem;
+      padding: 0.55rem 0.6rem; border-radius: 8px;
+      font-size: 0.82rem;
+    }
+    .demo-row + .demo-row { margin-top: 0.3rem; }
+    .demo-row .av {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--accent-tint); color: var(--accent);
+      font-size: 0.7rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .demo-row .nm { flex: 1; min-width: 0; }
+    .demo-row .nm b { display: block; font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+    .demo-row .nm small { font-size: 0.7rem; color: var(--ink-faint); }
+
+    /* stage 1 — pick one */
+    .demo-row.picked {
+      background: var(--accent-tint);
+      box-shadow: inset 0 0 0 1px #f4cbb0;
+    }
+    .demo-stage.s1.active .demo-row.picked {
+      animation: pickPulse 1.6s ease-in-out 0.6s 1 both;
+    }
+    @keyframes pickPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.025); box-shadow: inset 0 0 0 1.5px var(--accent-bright), 0 8px 20px -10px rgba(232,93,31,0.4); }
+      100% { transform: scale(1); }
+    }
+
+    /* stage 2 — single email being written */
+    .demo-mail {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      height: 100%;
+      display: flex; flex-direction: column;
+      box-shadow: 0 4px 12px -6px rgba(0,0,0,0.06);
+    }
+    .demo-mail .mh { font-size: 0.72rem; color: var(--ink-faint); margin-bottom: 0.15rem; }
+    .demo-mail .mh b { color: var(--ink); font-weight: 600; }
+    .demo-mail .subj { font-size: 0.92rem; font-weight: 700; color: var(--ink); margin: 0.55rem 0 0.65rem; }
+    .demo-mail .body { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.55; }
+    .typed { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: bottom; width: 0; max-width: 100%; }
+    .typed::after {
+      content: "▌"; color: var(--accent-bright); margin-left: 1px;
+      animation: caret 0.7s steps(1) infinite;
+    }
+    @keyframes caret { 50% { opacity: 0; } }
+    .demo-stage.s2.active .t1 { animation: typeLine 1.0s steps(40) 0.3s both; }
+    .demo-stage.s2.active .t2 { animation: typeLine 1.0s steps(36) 1.4s both; }
+    .demo-stage.s2.active .t3 { animation: typeLine 1.1s steps(44) 2.5s both; }
+    /* caret only on the line currently typing, then hide once the next starts */
+    .demo-stage.s2.active .t1::after { animation: caret 0.7s steps(1) infinite, caretOff 0s linear 1.4s forwards; }
+    .demo-stage.s2.active .t2::after { animation: caret 0.7s steps(1) infinite, caretOff 0s linear 2.5s forwards; }
+    @keyframes caretOff { to { opacity: 0; content: ""; } }
+    @keyframes typeLine { from { width: 0; } to { width: 100%; } }
+
+    /* stage 3 — grid of mini emails generating in parallel */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      height: 100%;
+    }
+    .mini {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 0.5rem 0.55rem;
+      display: flex; flex-direction: column; gap: 0.3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .mini .who { font-size: 0.68rem; font-weight: 700; color: var(--ink); }
+    .mini .ln { height: 5px; border-radius: 3px; background: #efece5; width: 0; transform: scaleX(0); transform-origin: left; }
+    .mini .ln.l2 { width: 70%; }
+    .mini .ln.l3 { width: 85%; }
+    .demo-stage.s3.active .ln.l1 { animation: fill 2.6s ease-out 0.2s both; }
+    .demo-stage.s3.active .ln.l2 { animation: fill 2.6s ease-out 0.45s both; }
+    .demo-stage.s3.active .ln.l3 { animation: fill 2.6s ease-out 0.7s both; }
+    @keyframes fill {
+      0%   { background: #efece5; transform: scaleX(0); }
+      40%  { background: var(--accent-tint); transform: scaleX(1); }
+      62%  { background: var(--accent-bright); transform: scaleX(1); }
+      100% { background: #d9efd5; transform: scaleX(1); }
+    }
+    .mini::after {
+      content: "✓"; position: absolute; top: 6px; right: 8px;
+      font-size: 0.7rem; font-weight: 700; color: #4c7544;
+      opacity: 0;
+    }
+    .demo-stage.s3.active .mini::after { animation: check 0.4s ease-out 2.4s both; }
+    @keyframes check { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+    .demo-stage.s3.active .mini:nth-child(2) .ln { animation-delay: 0.35s, 0.6s, 0.85s; }
+    .demo-stage.s3.active .mini:nth-child(2)::after { animation-delay: 2.55s; }
+    .demo-stage.s3.active .mini:nth-child(3) .ln { animation-delay: 0.5s, 0.75s, 1.0s; }
+    .demo-stage.s3.active .mini:nth-child(3)::after { animation-delay: 2.7s; }
+    .demo-stage.s3.active .mini:nth-child(4) .ln { animation-delay: 0.65s, 0.9s, 1.15s; }
+    .demo-stage.s3.active .mini:nth-child(4)::after { animation-delay: 2.85s; }
+    .demo-stage.s3.active .mini:nth-child(5) .ln { animation-delay: 0.8s, 1.05s, 1.3s; }
+    .demo-stage.s3.active .mini:nth-child(5)::after { animation-delay: 3.0s; }
+    .demo-stage.s3.active .mini:nth-child(6) .ln { animation-delay: 0.95s, 1.2s, 1.45s; }
+    .demo-stage.s3.active .mini:nth-child(6)::after { animation-delay: 3.15s; }
+
+    /* stage 4 — sent success */
+    .demo-sent {
+      height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.7rem;
+      text-align: center;
+    }
+    .sent-tick {
+      width: 68px; height: 68px; border-radius: 50%;
+      background: #e7efe4; color: #4c7544;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: 800;
+      transform: scale(0);
+    }
+    .demo-stage.s4.active .sent-tick { animation: tickPop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s both; }
+    @keyframes tickPop {
+      from { transform: scale(0); }
+      to   { transform: scale(1); }
+    }
+    .demo-sent h4 { font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+    .demo-sent p { font-size: 0.82rem; color: var(--ink-soft); }
+
+    /* stage 5 — analytics */
+    .demo-report {
+      height: 100%;
+      display: flex; flex-direction: column;
+      gap: 0.55rem;
+    }
+    .report-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .report-head .ttl2 { font-size: 0.78rem; font-weight: 700; color: var(--ink); }
+    .report-head .sub2 { font-size: 0.66rem; color: var(--ink-faint); font-weight: 500; }
+    .demo-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem;
+    }
+    .stat {
+      background: #fff; border: 1px solid var(--line);
+      border-radius: 8px; padding: 0.5rem 0.6rem;
+    }
+    .stat .lbl { font-size: 0.6rem; color: var(--ink-faint); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .stat .val { font-size: 1.1rem; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.15; margin-top: 0.1rem; }
+    .stat .delta {
+      display: inline-flex; align-items: center; gap: 2px;
+      font-size: 0.62rem; font-weight: 700; color: #2f7a3f;
+      margin-left: 0.25rem; vertical-align: middle;
+    }
+    .stat .from { display: block; font-size: 0.6rem; color: var(--ink-faint); margin-top: 0.05rem; font-weight: 500; }
+
+    .demo-chart {
+      background: #fff; border: 1px solid var(--line);
+      border-radius: 8px; padding: 0.6rem 0.7rem 0.4rem;
+      flex: 1; min-height: 0;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .chart-legend {
+      display: flex; gap: 0.85rem; font-size: 0.62rem; color: var(--ink-soft);
+      font-weight: 600; margin-bottom: 0.4rem;
+    }
+    .chart-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+    .legend-old i { background: #d8d3c5; }
+    .legend-new i { background: var(--accent-bright); }
+    .chart-area {
+      flex: 1; min-height: 0;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 0.55rem;
+      border-bottom: 1px solid var(--line-soft);
+      padding-bottom: 0.25rem;
+    }
+    .group {
+      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+      height: 100%;
+    }
+    .bars {
+      flex: 1; width: 100%;
+      display: flex; align-items: flex-end; justify-content: center; gap: 3px;
+    }
+    .bar {
+      width: 14px; align-self: stretch; border-radius: 3px 3px 0 0;
+      transform-origin: bottom; transform: scaleY(0);
+    }
+    .bar.old { background: #d8d3c5; }
+    .bar.new { background: linear-gradient(180deg, var(--accent-bright), var(--accent)); }
+    .group .xlbl { font-size: 0.6rem; color: var(--ink-faint); font-weight: 600; }
+    .demo-stage.s5.active .bar { animation: barRise 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+    .demo-stage.s5.active .group:nth-child(1) .bar { animation-delay: 0.3s; }
+    .demo-stage.s5.active .group:nth-child(2) .bar { animation-delay: 0.45s; }
+    .demo-stage.s5.active .group:nth-child(3) .bar { animation-delay: 0.6s; }
+    .demo-stage.s5.active .group:nth-child(4) .bar { animation-delay: 0.75s; }
+    .demo-stage.s5.active .group .bar.new { animation-delay: 0.9s; }
+    .demo-stage.s5.active .group:nth-child(2) .bar.new { animation-delay: 1.05s; }
+    .demo-stage.s5.active .group:nth-child(3) .bar.new { animation-delay: 1.2s; }
+    .demo-stage.s5.active .group:nth-child(4) .bar.new { animation-delay: 1.35s; }
+    @keyframes barRise {
+      from { transform: scaleY(0); }
+      to   { transform: scaleY(var(--h, 0.6)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .demo-stage { transition: none; }
+      .demo-stage.s5.active .bar { animation: none; transform: scaleY(var(--h, 0.6)); }
+      .demo-stage.s3.active .ln { animation: none; transform: scaleX(1); background: #d9efd5; }
+      .demo-stage.s3.active .mini::after { animation: none; opacity: 1; }
+      .demo-stage.s2.active .typed { animation: none; width: 100%; }
+      .demo-stage.s2.active .typed::after { display: none; }
+      .demo-stage.s4.active .sent-tick { animation: none; transform: scale(1); }
+      .demo-stage.s1.active .demo-row.picked { animation: none; }
+    }
 
     .invite-row {
       display: flex;
@@ -966,7 +1258,7 @@
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <img src="Pecan Logo PNG.png" alt="Pecan" />
+        <img src="/pecan/Pecan Logo PNG.png" alt="Pecan" />
         <span>Pecan</span>
       </a>
       <div class="nav-links">
@@ -983,7 +1275,7 @@
     <div class="wrap">
       <div class="hero-grid">
         <div>
-          <h1>Every invite, written for the person reading it.</h1>
+          <h1>Every invite, written for the <span class="hl">person</span> reading it.</h1>
           <p class="hero-sub">
             Pecan is an agentic system that sits on top of your CRM. It turns one event
             invite list into hundreds of individually personalised messages, sends them,
@@ -1003,34 +1295,76 @@
             <span class="dot"></span><span class="dot"></span><span class="dot"></span>
             <span class="ttl">Spring Partner Reception · 1,240 invitees</span>
           </div>
-          <div class="panel-body">
-            <div class="invite-row">
-              <div class="avatar">AO</div>
-              <div class="invite-meta">
-                <strong>Amara Okafor</strong>
-                <span>Finance · Northbridge Group</span>
-              </div>
-              <span class="invite-tag done">Replied · Going</span>
+          <div class="demo-stage-wrap" id="heroDemo">
+            <!-- Stage 1: invite list, one gets picked -->
+            <div class="demo-stage s1">
+              <div class="demo-row"><div class="av">AO</div><div class="nm"><b>Amara Okafor</b><small>Finance · Northbridge Group</small></div></div>
+              <div class="demo-row picked"><div class="av">JT</div><div class="nm"><b>Jack Turner</b><small>Engineering lead · Triom</small></div></div>
+              <div class="demo-row"><div class="av">PR</div><div class="nm"><b>Priya Raman</b><small>Counsel · Halden &amp; Mercer</small></div></div>
+              <div class="demo-row"><div class="av">DM</div><div class="nm"><b>Diego Martín</b><small>VP Product · Lumenstack</small></div></div>
+              <div class="demo-row"><div class="av">SK</div><div class="nm"><b>Sara Klein</b><small>Partner · Halden &amp; Mercer</small></div></div>
             </div>
-            <div class="invite-row focus">
-              <div class="avatar">JT</div>
-              <div class="invite-meta">
-                <strong>Jack Turner</strong>
-                <span>Engineering lead · Triom</span>
+
+            <!-- Stage 2: writing one personalised email -->
+            <div class="demo-stage s2">
+              <div class="demo-mail">
+                <div class="mh">To <b>jack.turner@triom.io</b></div>
+                <div class="mh">From <b>events@northbridge.com</b></div>
+                <div class="subj">Jack, a roundtable on adaptive control</div>
+                <div class="body">
+                  <span class="typed t1">Hi Jack, I caught your Strange Loop talk on closed loop controllers.</span><br/>
+                  <span class="typed t2">We're running a 20 minute roundtable on the same topic, Thursday 6pm.</span><br/>
+                  <span class="typed t3">Amara from Northbridge is coming, thought you two should finally meet.</span>
+                </div>
               </div>
-              <span class="invite-tag draft">Draft ready</span>
             </div>
-            <div class="invite-row">
-              <div class="avatar">PR</div>
-              <div class="invite-meta">
-                <strong>Priya Raman</strong>
-                <span>Counsel · Halden &amp; Mercer</span>
+
+            <!-- Stage 3: parallel personalisation -->
+            <div class="demo-stage s3">
+              <div class="demo-grid">
+                <div class="mini"><span class="who">Amara O.</span><span class="ln l1"></span><span class="ln l2"></span><span class="ln l3"></span></div>
+                <div class="mini"><span class="who">Jack T.</span><span class="ln l1"></span><span class="ln l2"></span><span class="ln l3"></span></div>
+                <div class="mini"><span class="who">Priya R.</span><span class="ln l1"></span><span class="ln l2"></span><span class="ln l3"></span></div>
+                <div class="mini"><span class="who">Diego M.</span><span class="ln l1"></span><span class="ln l2"></span><span class="ln l3"></span></div>
+                <div class="mini"><span class="who">Sara K.</span><span class="ln l1"></span><span class="ln l2"></span><span class="ln l3"></span></div>
+                <div class="mini"><span class="who">+ 1,235</span><span class="ln l1"></span><span class="ln l2"></span><span class="ln l3"></span></div>
               </div>
-              <span class="invite-tag queued">In queue</span>
             </div>
-            <div class="panel-note">
-              <b>Jack's draft:</b> mentions the robotics session that fits his work, and
-              notes that two people he knows have already said yes.
+
+            <!-- Stage 4: sent -->
+            <div class="demo-stage s4">
+              <div class="demo-sent">
+                <div class="sent-tick">✓</div>
+                <h4>1,240 personalised invites sent</h4>
+                <p>Each one written for the person reading it · 3.2s avg</p>
+              </div>
+            </div>
+
+            <!-- Stage 5: analytics -->
+            <div class="demo-stage s5">
+              <div class="demo-report">
+                <div class="report-head">
+                  <span class="ttl2">Attendance vs last 4 events</span>
+                  <span class="sub2">Spring Reception · Imperial Business School</span>
+                </div>
+                <div class="demo-stats">
+                  <div class="stat"><div class="lbl">Reply rate</div><div class="val">38%<span class="delta">▲ 4.2×</span></div><span class="from">was 9%</span></div>
+                  <div class="stat"><div class="lbl">Confirmed</div><div class="val">612<span class="delta">▲ 3.1×</span></div><span class="from">was 198</span></div>
+                  <div class="stat"><div class="lbl">Showed up</div><div class="val">412<span class="delta">▲ 2.6×</span></div><span class="from">was 158</span></div>
+                </div>
+                <div class="demo-chart">
+                  <div class="chart-legend">
+                    <span class="legend-old"><i></i>Generic invite</span>
+                    <span class="legend-new"><i></i>Pecan personalised</span>
+                  </div>
+                  <div class="chart-area">
+                    <div class="group"><div class="bars"><span class="bar old" style="--h:0.22"></span><span class="bar new" style="--h:0.55"></span></div><span class="xlbl">Oct</span></div>
+                    <div class="group"><div class="bars"><span class="bar old" style="--h:0.28"></span><span class="bar new" style="--h:0.68"></span></div><span class="xlbl">Nov</span></div>
+                    <div class="group"><div class="bars"><span class="bar old" style="--h:0.25"></span><span class="bar new" style="--h:0.82"></span></div><span class="xlbl">Feb</span></div>
+                    <div class="group"><div class="bars"><span class="bar old" style="--h:0.3"></span><span class="bar new" style="--h:0.96"></span></div><span class="xlbl">Spring</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1043,7 +1377,7 @@
     <div class="wrap">
       <div class="pilot-inner">
         <span>Running a pilot with the Business School at</span>
-        <img class="pilot-logo" src="Logos/imperial.png" alt="Imperial College London" />
+        <img class="pilot-logo" src="/pecan/logos/imperial.png" alt="Imperial College London" />
       </div>
     </div>
   </div>
@@ -1340,25 +1674,25 @@
         <div class="int-group">
           <div class="int-label">Your CRM</div>
           <div class="int-logos">
-            <img src="Logos/Salesforce.png" alt="Salesforce" />
-            <img src="Logos/Hubspot.png" alt="HubSpot" />
-            <img src="Logos/Attio.png" alt="Attio" />
+            <img src="/pecan/logos/Salesforce.png" alt="Salesforce" />
+            <img src="/pecan/logos/Hubspot.png" alt="HubSpot" />
+            <img src="/pecan/logos/Attio.png" alt="Attio" />
           </div>
         </div>
         <div class="int-divider"></div>
         <div class="int-group">
           <div class="int-label">Event platforms</div>
           <div class="int-logos">
-            <img src="Logos/eventbrite.png" alt="Eventbrite" />
-            <img src="Logos/Luma.png" alt="Luma" />
+            <img src="/pecan/logos/eventbrite.png" alt="Eventbrite" />
+            <img src="/pecan/logos/Luma.png" alt="Luma" />
           </div>
         </div>
         <div class="int-divider"></div>
         <div class="int-group">
           <div class="int-label">Your email</div>
           <div class="int-logos">
-            <img src="Logos/Outlook.png" alt="Outlook" />
-            <img src="Logos/Gmail.png" alt="Gmail" />
+            <img src="/pecan/logos/Outlook.png" alt="Outlook" />
+            <img src="/pecan/logos/Gmail.png" alt="Gmail" />
           </div>
         </div>
       </div>
@@ -1437,7 +1771,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-logo">
-            <img src="Pecan Logo PNG.png" alt="Pecan" />
+            <img src="/pecan/Pecan Logo PNG.png" alt="Pecan" />
             <span>Pecan</span>
           </div>
           <p>Agentic event outreach for regulated industries. One invite list, written for every person on it.</p>
@@ -1462,8 +1796,8 @@
         <div class="footer-col">
           <h4>Contact</h4>
           <div class="footer-contact">
-            <div>Pecan Inc.</div>
-            <div>hello@pecanaix.com</div>
+            <div>Team Pecan</div>
+            <div>xabier.fernandez-ruiz25@imperial.ac.uk</div>
             <div>London, United Kingdom</div>
           </div>
         </div>
@@ -1516,6 +1850,61 @@
       }
       return false;
     }
+
+    // Hero demo: advance stages on their own dwell timers
+    (function () {
+      const demo = document.getElementById('heroDemo');
+      if (!demo) return;
+      const stages = Array.from(demo.querySelectorAll('.demo-stage'));
+      if (!stages.length) return;
+
+      // dwell time per stage in ms — long enough for that stage's inner
+      // animation to finish, then a beat of stillness before the switch
+      const dwell = [3200, 5400, 5200, 2800, 6400];
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let i = 0;
+      let timer = null;
+      let running = false;
+
+      function show(n) {
+        stages.forEach((s, idx) => {
+          if (idx === n) {
+            s.classList.remove('active');
+            void s.offsetWidth;
+            s.classList.add('active');
+          } else {
+            s.classList.remove('active');
+          }
+        });
+      }
+
+      function tick() {
+        show(i);
+        timer = setTimeout(() => {
+          i = (i + 1) % stages.length;
+          tick();
+        }, dwell[i] || 4000);
+      }
+
+      function start() {
+        if (running) return;
+        running = true;
+        if (reduced) { show(0); return; }
+        tick();
+      }
+
+      function stop() {
+        running = false;
+        if (timer) { clearTimeout(timer); timer = null; }
+      }
+
+      // only run while the hero demo is on screen
+      const vis = new IntersectionObserver((entries) => {
+        entries.forEach(e => e.isIntersecting ? start() : stop());
+      }, { threshold: 0.2 });
+      vis.observe(demo);
+    })();
   </script>
 </body>
 </html>

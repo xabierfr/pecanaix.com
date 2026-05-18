@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pecan · Agentic email marketing for regulated industries</title>
+  <link rel="icon" type="image/png" href="pecan-logo.png" />
+  <link rel="apple-touch-icon" href="pecan-logo.png" />
   <meta name="description" content="Pecan is an agentic email marketing platform. It finds the right people, writes a different email for each of them, and predicts how every recipient will react before you send." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -851,14 +853,18 @@
     .int-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
     .int-chip {
       display: flex; align-items: center; justify-content: center;
-      background: var(--ink-soft);
+      background: #ffffff;
       border: 1px solid var(--ink-line);
-      padding: 0.7rem 1.05rem; border-radius: 7px;
-      transition: border-color 0.15s, transform 0.15s;
+      padding: 0.85rem 1.25rem; border-radius: 7px;
+      transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
     }
-    .int-chip:hover { border-color: var(--ink-line); transform: translateY(-1px); }
+    .int-chip:hover {
+      border-color: var(--gold);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px -10px rgba(0,0,0,0.6);
+    }
     .int-chip img {
-      height: 24px; width: auto; display: block;
+      height: 26px; width: auto; display: block;
       object-fit: contain;
     }
 
@@ -930,6 +936,13 @@
       transition: color 0.15s;
     }
     .foot-col a:hover { color: var(--gold); }
+    .foot-col a.with-li {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .foot-col a.with-li svg {
+      width: 14px; height: 14px; flex-shrink: 0;
+      fill: currentColor;
+    }
     .foot-bottom {
       display: flex; justify-content: space-between; align-items: center;
       padding-top: 1.5rem; flex-wrap: wrap; gap: 0.7rem;
@@ -1426,8 +1439,8 @@
           <h5>Company</h5>
           <ul>
             <li><a href="#" onclick="openBooking(event)">Book a demo</a></li>
-            <li><a href="https://www.linkedin.com/in/rajith-remo/" target="_blank" rel="noopener">Rajith Remo</a></li>
-            <li><a href="https://www.linkedin.com/in/xabier-fern%C3%A1ndez-ruiz/" target="_blank" rel="noopener">Xabier Fernández Ruiz</a></li>
+            <li><a class="with-li" href="https://www.linkedin.com/in/rajith-remo/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Rajith Remo</a></li>
+            <li><a class="with-li" href="https://www.linkedin.com/in/xabier-fern%C3%A1ndez-ruiz/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Xabier Fernández Ruiz</a></li>
           </ul>
         </div>
       </div>

@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pecan · Personalised event outreach for regulated industries</title>
-  <link rel="icon" type="image/png" href="/pecanai/Pecan Logo PNG.png" />
-  <link rel="apple-touch-icon" href="/pecanai/Pecan Logo PNG.png" />
+  <link rel="icon" type="image/png" href="Pecan%20Logo%20PNG.png" />
+  <link rel="apple-touch-icon" href="Pecan%20Logo%20PNG.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,6 +13,7 @@
     :root {
       --bg: #ffffff;
       --bg-warm: #f6f6f4;
+      --bg-deep: #f0efec;
       --surface: #ffffff;
       --ink: #211d16;
       --ink-soft: #5b5446;
@@ -113,18 +114,6 @@
       overflow: hidden;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: -180px;
-      right: -160px;
-      width: 620px;
-      height: 620px;
-      background: radial-gradient(circle at center, rgba(232, 93, 31, 0.16), rgba(232, 93, 31, 0) 65%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
     .hero .wrap {
       position: relative;
       z-index: 1;
@@ -171,7 +160,6 @@
       position: relative;
       white-space: nowrap;
       color: var(--accent);
-      font-style: italic;
     }
     h1 .hl::after {
       content: "";
@@ -240,7 +228,7 @@
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 14px;
-      box-shadow: 0 30px 60px -28px rgba(184, 82, 31, 0.35), 0 8px 20px -12px rgba(0,0,0,0.08);
+      box-shadow: 0 30px 60px -28px rgba(33, 29, 22, 0.4), 0 8px 20px -12px rgba(0,0,0,0.1);
       overflow: hidden;
       position: relative;
     }
@@ -271,9 +259,7 @@
       height: 340px;
       padding: 1.1rem;
       overflow: hidden;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(232,93,31,0.05), transparent 60%),
-        #fff;
+      background: #fff;
     }
     .demo-stage {
       position: absolute;
@@ -477,7 +463,7 @@
       transform-origin: bottom; transform: scaleY(0);
     }
     .bar.old { background: #d8d3c5; }
-    .bar.new { background: linear-gradient(180deg, var(--accent-bright), var(--accent)); }
+    .bar.new { background: var(--accent-bright); }
     .group .xlbl { font-size: 0.6rem; color: var(--ink-faint); font-weight: 600; }
     .demo-stage.s5.active .bar { animation: barRise 0.7s cubic-bezier(0.22,1,0.36,1) both; }
     .demo-stage.s5.active .group:nth-child(1) .bar { animation-delay: 0.3s; }
@@ -611,15 +597,16 @@
 
     .sec-head {
       font-size: clamp(1.7rem, 3.1vw, 2.5rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.16;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
       color: var(--ink);
     }
 
     /* ---------- Why Pecan ---------- */
     .why {
-      padding: 6rem 0 2rem;
+      padding: 6rem 0;
+      background: var(--ink);
     }
 
     .why-head {
@@ -628,11 +615,13 @@
       text-align: center;
     }
 
-    .why-head .sec-eyebrow { margin-bottom: 0.9rem; }
+    .why-head .sec-eyebrow { margin-bottom: 0.9rem; color: var(--accent-bright); }
+
+    .why .sec-head { color: #fff; }
 
     .why-lead {
       font-size: 1.08rem;
-      color: var(--ink-soft);
+      color: rgba(255,255,255,0.72);
       line-height: 1.6;
       margin-top: 1rem;
     }
@@ -646,16 +635,17 @@
     .why-card {
       border-radius: 18px;
       padding: 2rem;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .why-card.old {
-      background: var(--bg-warm);
+      background: rgba(255,255,255,0.04);
     }
 
     .why-card.new {
       background: var(--surface);
-      box-shadow: 0 14px 36px -22px rgba(70, 45, 20, 0.3);
+      border-color: var(--surface);
+      box-shadow: 0 20px 44px -22px rgba(0,0,0,0.5);
     }
 
     .why-tag {
@@ -669,16 +659,18 @@
       margin-bottom: 1rem;
     }
 
-    .why-tag.old { background: var(--line); color: var(--ink-faint); }
+    .why-tag.old { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
     .why-tag.new { background: var(--accent-soft); color: var(--accent); }
 
     .why-card h3 {
       font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--ink);
+      font-weight: 800;
+      letter-spacing: -0.03em;
       margin-bottom: 1.25rem;
     }
+
+    .why-card.old h3 { color: #fff; }
+    .why-card.new h3 { color: var(--ink); }
 
     .why-stack {
       display: flex;
@@ -689,9 +681,6 @@
 
     .why-mail {
       font-size: 0.82rem;
-      color: var(--ink-soft);
-      background: var(--surface);
-      border: 1px solid var(--line);
       border-radius: 8px;
       padding: 0.65rem 0.8rem;
       white-space: nowrap;
@@ -699,21 +688,26 @@
       text-overflow: ellipsis;
     }
 
-    .why-mail.dim {
-      color: var(--ink-faint);
+    .why-card.old .why-mail {
+      color: rgba(255,255,255,0.45);
       background: transparent;
-      border-color: var(--line-soft);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .why-card.new .why-mail {
+      color: var(--ink-soft);
+      background: var(--surface);
+      border: 1px solid var(--line);
       border-left: 2px solid var(--accent);
     }
 
     .why-card > p {
       font-size: 0.9rem;
-      color: var(--ink-soft);
       line-height: 1.6;
     }
+
+    .why-card.old > p { color: rgba(255,255,255,0.55); }
+    .why-card.new > p { color: var(--ink-soft); }
 
     @media (max-width: 760px) {
       .why-contrast { grid-template-columns: 1fr; }
@@ -737,6 +731,12 @@
       padding: 3.5rem 0;
     }
 
+    .feature.shaded {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
     .feature-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -748,9 +748,9 @@
 
     .feature h3 {
       font-size: clamp(1.45rem, 2.4vw, 1.95rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.18;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.12;
       color: var(--ink);
       margin-bottom: 0.85rem;
     }
@@ -794,7 +794,7 @@
 
     /* feature visuals */
     .feature-visual {
-      background: var(--bg-warm);
+      background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 1.5rem;
@@ -802,6 +802,11 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      box-shadow: 0 12px 30px -20px rgba(33, 29, 22, 0.3);
+    }
+
+    .feature.shaded .feature-visual {
+      background: var(--surface);
     }
 
     .mini-card {
@@ -809,6 +814,14 @@
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 0.9rem 1rem;
+    }
+
+    .feature .feature-visual .mini-card {
+      background: var(--bg-warm);
+    }
+
+    .feature.shaded .feature-visual .mini-card {
+      background: var(--bg);
     }
 
     .mini-card + .mini-card { margin-top: 0.7rem; }
@@ -839,14 +852,14 @@
     }
 
     .stat-box {
-      background: var(--surface);
+      background: var(--bg-warm);
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 0.95rem 0.9rem;
       text-align: left;
     }
 
-    .stat-box .num { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+    .stat-box .num { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; }
     .stat-box .lbl { font-size: 0.72rem; color: var(--ink-faint); margin-top: 0.15rem; line-height: 1.35; }
 
     .net-viz {
@@ -859,7 +872,7 @@
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      background: var(--surface);
+      background: var(--bg);
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 0.7rem 0.85rem;
@@ -882,6 +895,9 @@
     /* ---------- Workflow diagram ---------- */
     .workflow {
       padding: 5.5rem 0;
+      background: var(--bg-deep);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
     .workflow-head { max-width: 620px; margin-bottom: 2.75rem; }
@@ -897,6 +913,7 @@
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 2.5rem 2rem;
+      box-shadow: 0 16px 36px -24px rgba(33, 29, 22, 0.32);
     }
 
     .flow-hub {
@@ -916,7 +933,7 @@
       border: 1px solid var(--line);
       border-radius: 11px;
       padding: 1rem 1.1rem;
-      background: var(--bg);
+      background: var(--bg-warm);
     }
 
     .flow-node.core {
@@ -935,7 +952,7 @@
       margin-bottom: 0.3rem;
     }
 
-    .flow-node.core .role { color: #e8a988; }
+    .flow-node.core .role { color: var(--accent-bright); }
 
     .flow-node h4 {
       font-size: 1.02rem;
@@ -999,7 +1016,7 @@
     .pipe-step {
       flex: 1;
       min-width: 130px;
-      background: var(--bg);
+      background: var(--bg-warm);
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 0.85rem 0.9rem;
@@ -1041,8 +1058,8 @@
 
     .integrations h2 {
       font-size: clamp(1.5rem, 2.6vw, 2rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
+      font-weight: 800;
+      letter-spacing: -0.04em;
       color: var(--ink);
       margin-bottom: 0.7rem;
     }
@@ -1123,10 +1140,10 @@
 
     .cta-inner h2 {
       font-size: clamp(1.7rem, 3vw, 2.4rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
+      font-weight: 800;
+      letter-spacing: -0.04em;
       color: #fff;
-      line-height: 1.16;
+      line-height: 1.1;
     }
 
     .cta-inner p {
@@ -1137,17 +1154,27 @@
       line-height: 1.6;
     }
 
-    .cta-inner .btn-primary { font-size: 1rem; padding: 0.85rem 1.6rem; }
+    .cta-inner .btn-primary {
+      font-size: 1rem;
+      padding: 0.85rem 1.6rem;
+      background: var(--accent);
+    }
+
+    .cta-inner .btn-primary:hover { background: var(--accent-hover); }
 
     /* ---------- FAQ ---------- */
-    .faq { padding: 4rem 0; }
+    .faq {
+      padding: 4rem 0;
+      background: var(--bg-warm);
+      border-top: 1px solid var(--line);
+    }
 
     .faq-inner { max-width: 720px; margin: 0 auto; }
 
     .faq h2 {
       font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
+      font-weight: 800;
+      letter-spacing: -0.04em;
       color: var(--ink);
       margin-bottom: 2rem;
       text-align: center;
@@ -1179,7 +1206,7 @@
       transition: transform 0.22s;
     }
 
-    .faq-q.open svg { transform: rotate(180deg); }
+    .faq-q.open svg { transform: rotate(180deg); stroke: var(--accent); }
 
     .faq-a { display: none; padding: 0 0 1.3rem; }
     .faq-a.open { display: block; }
@@ -1188,8 +1215,7 @@
 
     /* ---------- Footer ---------- */
     footer {
-      background: var(--surface);
-      border-top: 1px solid var(--line);
+      background: var(--ink);
       padding: 3.5rem 0 2rem;
     }
 
@@ -1198,25 +1224,25 @@
       grid-template-columns: 2fr 1fr 1fr;
       gap: 3rem;
       padding-bottom: 2.5rem;
-      border-bottom: 1px solid var(--line-soft);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .footer-brand { display: flex; flex-direction: column; gap: 0.8rem; }
 
     .footer-logo { display: flex; align-items: center; gap: 0.4rem; }
     .footer-logo img { height: 26px; width: auto; }
-    .footer-logo span { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+    .footer-logo span { font-size: 1.05rem; font-weight: 700; color: #fff; }
 
     .footer-brand p {
       font-size: 0.88rem;
-      color: var(--ink-soft);
+      color: rgba(255,255,255,0.6);
       line-height: 1.6;
       max-width: 34ch;
     }
 
     .footer-socials { display: flex; gap: 0.8rem; margin-top: 0.2rem; }
-    .footer-socials a { color: var(--ink-faint); transition: color 0.15s; }
-    .footer-socials a:hover { color: var(--accent); }
+    .footer-socials a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer-socials a:hover { color: var(--accent-bright); }
     .footer-socials svg { width: 17px; height: 17px; fill: currentColor; }
 
     .footer-col h4 {
@@ -1224,16 +1250,16 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--ink-faint);
+      color: rgba(255,255,255,0.5);
       margin-bottom: 1rem;
     }
 
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-col ul li a { font-size: 0.88rem; color: var(--ink-soft); text-decoration: none; transition: color 0.15s; }
-    .footer-col ul li a:hover { color: var(--accent); }
+    .footer-col ul li a { font-size: 0.88rem; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.15s; }
+    .footer-col ul li a:hover { color: var(--accent-bright); }
 
     .footer-contact { display: flex; flex-direction: column; gap: 0.55rem; }
-    .footer-contact div { font-size: 0.88rem; color: var(--ink-soft); }
+    .footer-contact div { font-size: 0.88rem; color: rgba(255,255,255,0.7); }
 
     .footer-bottom {
       display: flex;
@@ -1244,10 +1270,10 @@
       gap: 0.8rem;
     }
 
-    .footer-bottom p { font-size: 0.79rem; color: var(--ink-faint); }
+    .footer-bottom p { font-size: 0.79rem; color: rgba(255,255,255,0.45); }
     .footer-links { display: flex; gap: 1.3rem; }
-    .footer-links a { font-size: 0.79rem; color: var(--ink-faint); text-decoration: none; transition: color 0.15s; }
-    .footer-links a:hover { color: var(--accent); }
+    .footer-links a { font-size: 0.79rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--accent-bright); }
 
     @media (max-width: 720px) {
       .footer-top { grid-template-columns: 1fr; gap: 2rem; }
@@ -1258,7 +1284,7 @@
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <img src="/pecan/Pecan Logo PNG.png" alt="Pecan" />
+        <img src="Pecan%20Logo%20PNG.png" alt="Pecan" />
         <span>Pecan</span>
       </a>
       <div class="nav-links">
@@ -1377,7 +1403,7 @@
     <div class="wrap">
       <div class="pilot-inner">
         <span>Running a pilot with the Business School at</span>
-        <img class="pilot-logo" src="/pecanai/logos/imperial.png" alt="Imperial College London" />
+        <img class="pilot-logo" src="logos/imperial.png" alt="Imperial College London" />
       </div>
     </div>
   </div>
@@ -1399,10 +1425,10 @@
           <div class="why-tag old">The usual way</div>
           <h3>One email, sent to everyone.</h3>
           <div class="why-stack">
-            <div class="why-mail dim">Dear all, you are invited to our event...</div>
-            <div class="why-mail dim">Dear all, you are invited to our event...</div>
-            <div class="why-mail dim">Dear all, you are invited to our event...</div>
-            <div class="why-mail dim">Dear all, you are invited to our event...</div>
+            <div class="why-mail">Dear all, you are invited to our event...</div>
+            <div class="why-mail">Dear all, you are invited to our event...</div>
+            <div class="why-mail">Dear all, you are invited to our event...</div>
+            <div class="why-mail">Dear all, you are invited to our event...</div>
           </div>
           <p>The same words for a thousand people. Quick to send, easy to ignore.</p>
         </div>
@@ -1487,7 +1513,7 @@
   </section>
 
   <!-- ---------- Feature 2: network nudges ---------- -->
-  <section class="feature flip">
+  <section class="feature flip shaded">
     <div class="wrap">
       <div class="feature-grid reveal">
         <div>
@@ -1525,7 +1551,7 @@
               <div class="link"><b>Sarah</b> has already confirmed she is attending</div>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
             </div>
-            <div class="net-line" style="background:var(--bg-warm);">
+            <div class="net-line" style="background:var(--accent-tint);border-color:#f4cbb0;">
               <div class="avatar">JT</div>
               <div class="link">Jack's invite now mentions Sarah will be there</div>
             </div>
@@ -1674,25 +1700,25 @@
         <div class="int-group">
           <div class="int-label">Your CRM</div>
           <div class="int-logos">
-            <img src="/pecanai/logos/Salesforce.png" alt="Salesforce" />
-            <img src="/pecanai/logos/Hubspot.png" alt="HubSpot" />
-            <img src="/pecanai/logos/Attio.png" alt="Attio" />
+            <img src="logos/Salesforce.png" alt="Salesforce" />
+            <img src="logos/Hubspot.png" alt="HubSpot" />
+            <img src="logos/Attio.png" alt="Attio" />
           </div>
         </div>
         <div class="int-divider"></div>
         <div class="int-group">
           <div class="int-label">Event platforms</div>
           <div class="int-logos">
-            <img src="/pecanai/logos/eventbrite.png" alt="Eventbrite" />
-            <img src="/pecanai/logos/Luma.png" alt="Luma" />
+            <img src="logos/eventbrite.png" alt="Eventbrite" />
+            <img src="logos/Luma.png" alt="Luma" />
           </div>
         </div>
         <div class="int-divider"></div>
         <div class="int-group">
           <div class="int-label">Your email</div>
           <div class="int-logos">
-            <img src="/pecanai/logos/Outlook.png" alt="Outlook" />
-            <img src="/pecanai/logos/Gmail.png" alt="Gmail" />
+            <img src="logos/Outlook.png" alt="Outlook" />
+            <img src="logos/Gmail.png" alt="Gmail" />
           </div>
         </div>
       </div>
@@ -1771,7 +1797,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-logo">
-            <img src="/pecan/Pecan Logo PNG.png" alt="Pecan" />
+            <img src="Pecan%20Logo%20PNG.png" alt="Pecan" />
             <span>Pecan</span>
           </div>
           <p>Agentic event outreach for regulated industries. One invite list, written for every person on it.</p>

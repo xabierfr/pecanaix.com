@@ -1259,7 +1259,78 @@
     .footer-col ul li a:hover { color: var(--accent-bright); }
 
     .footer-contact { display: flex; flex-direction: column; gap: 0.55rem; }
-    .footer-contact div { font-size: 0.88rem; color: rgba(255,255,255,0.7); }
+
+    .footer-contact .team-label {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.15rem;
+    }
+
+    .contact-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      text-decoration: none;
+      transition: background 0.16s, border-color 0.16s, transform 0.16s;
+    }
+
+    .contact-chip + .contact-chip { margin-top: 0.1rem; }
+
+    .contact-chip:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(232,93,31,0.5);
+      transform: translateY(-2px);
+    }
+
+    .contact-chip .chip-av {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-chip .chip-name {
+      flex: 1;
+      min-width: 0;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .contact-chip .chip-li {
+      width: 26px; height: 26px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.16s, color 0.16s;
+    }
+
+    .contact-chip:hover .chip-li {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .contact-chip .chip-li svg { width: 14px; height: 14px; fill: currentColor; }
+
+    .footer-contact .loc {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.35rem;
+    }
 
     .footer-bottom {
       display: flex;
@@ -1822,9 +1893,22 @@
         <div class="footer-col">
           <h4>Contact</h4>
           <div class="footer-contact">
-            <div>Team Pecan</div>
-            <div>xabier.fernandez-ruiz25@imperial.ac.uk</div>
-            <div>London, United Kingdom</div>
+            <div class="team-label">Team Pecan</div>
+            <a class="contact-chip" href="https://www.linkedin.com/in/rajith-remo/" target="_blank" rel="noopener">
+              <span class="chip-av">RR</span>
+              <span class="chip-name">Rajith Remo</span>
+              <span class="chip-li">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </span>
+            </a>
+            <a class="contact-chip" href="https://www.linkedin.com/in/xabier-fern%C3%A1ndez-ruiz/" target="_blank" rel="noopener">
+              <span class="chip-av">XF</span>
+              <span class="chip-name">Xabier Fernández Ruiz</span>
+              <span class="chip-li">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </span>
+            </a>
+            <div class="loc">London, United Kingdom</div>
           </div>
         </div>
       </div>
